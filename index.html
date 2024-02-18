@@ -471,7 +471,7 @@
           method: 'GET',
         });
         let data = await response.json()
-        document.getElementById("visitors").innerHTML = data['Attributes']['visitor_count'];
+        document.getElementById("visitors").innerHTML = data['visitor_count'];
         console.log(data);
         return data;
       } catch (err) {
