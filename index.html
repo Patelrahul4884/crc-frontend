@@ -50,7 +50,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">Start Bootstrap</span>
+      <span class="d-block d-lg-none">Rahul Patel</span>
       <span class="d-none d-lg-block">
         <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
       </span>
@@ -461,26 +461,7 @@
     }
   </script>
   <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-  <script>
-    // GET API REQUEST
-    async function get_visitors() {
-      // call post api request function
-      //await post_visitor();
-      try {
-        let response = await fetch('https://4ix1ubxo38.execute-api.us-east-1.amazonaws.com/prod/countVisitor', {
-          method: 'GET',
-        });
-        let data = await response.json()
-        document.getElementById("visitors").innerHTML = data['visitor_count'];
-        console.log(data);
-        return data;
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    get_visitors();
-
-  </script>
+  <script src="js/visitor_count.js"></script>
   <!-- RDS Setup -->
   <!-- <script>
     // GET API REQUEST
