@@ -155,6 +155,137 @@
   }
 
   // ═══════════════════════════════════════════
+  // INTERACTIVE ARCHITECTURE INSPECTOR
+  // ═══════════════════════════════════════════
+
+  const archNodesData = {
+    'route53': {
+      title: 'Amazon Route 53',
+      badge: 'DNS & Edge Routing',
+      purpose: 'Highly available, low-latency authoritative Domain Name System (DNS) service.',
+      why: 'Provides global Anycast DNS routing with native Alias records mapping directly to CloudFront distributions without CNAME flattening issues or extra query hops.',
+      specs: 'Hosted Zone: Public | Record: Alias A to CloudFront distribution | Health Check & Latency Routing supported'
+    },
+    'cloudfront': {
+      title: 'Amazon CloudFront',
+      badge: 'Global CDN & TLS Termination',
+      purpose: 'Global content delivery network caching static assets at 400+ edge Points of Presence.',
+      why: 'Eliminates public internet latency to S3, enforces TLS 1.3 encryption with ACM SSL certificates, reduces bandwidth transfer costs, and protects the origin using AWS Shield Standard DDoS mitigation.',
+      specs: 'Origin: S3 via Origin Access Control (OAC) | Protocol: HTTPS Redirect | Cache Policy: Managed-CachingOptimized | Compression: Gzip/Brotli'
+    },
+    's3': {
+      title: 'Amazon S3 (Simple Storage Service)',
+      badge: 'Object Storage Origin',
+      purpose: 'Durable, high-availability object store hosting HTML, CSS, JavaScript, and static assets.',
+      why: 'Provides 99.999999999% (11 9s) data durability with zero server maintenance overhead. Cost-efficient pay-for-storage economics with zero idle compute cost.',
+      specs: 'Public Access: 100% Blocked | Access Policy: Read permission strictly granted to CloudFront OAC principal | Encryption: AES-256 (SSE-S3)'
+    },
+    'frontend': {
+      title: 'Frontend Client (Single Page App)',
+      badge: 'Presentation Layer',
+      purpose: 'Client-side UI, telemetry metrics visualization, and asynchronous API calls.',
+      why: 'Constructed with lightweight vanilla HTML5, CSS3, and JavaScript for blazing fast load times (<1s), zero heavy runtime bundles, full responsiveness, and accessible screen-reader support.',
+      specs: 'Runtime: Modern Vanilla ES6+ | Telemetry: Asynchronous Fetch API to AWS API Gateway | Visuals: Pure Canvas 2D Starfield'
+    },
+    'apigateway': {
+      title: 'Amazon API Gateway',
+      badge: 'REST API & CORS Gateway',
+      purpose: 'Serverless HTTP API entry point managing traffic, CORS headers, and request routing.',
+      why: 'Decouples frontend clients from serverless compute. Handles automated request throttling, SSL termination, and CORS preflight handling with zero server instances to manage.',
+      specs: 'Endpoint: REST API (/prod/countVisitor) | Integration: Lambda Proxy Integration | CORS: Access-Control-Allow-Origin: * | Protocol: HTTPS'
+    },
+    'lambda': {
+      title: 'AWS Lambda',
+      badge: 'Serverless Event Compute',
+      purpose: 'Event-driven compute executing visitor increment mutation and telemetry logic.',
+      why: 'Scales from zero to thousands of concurrent executions instantaneously without idle capacity charges. Eliminates operating system patching and provisioned infrastructure overhead.',
+      specs: 'Runtime: Python 3.x | Memory: 128 MB | IAM Role: Least-privilege dynamodb:UpdateItem & dynamodb:GetItem execution policy'
+    },
+    'dynamodb': {
+      title: 'Amazon DynamoDB',
+      badge: 'NoSQL Key-Value Store',
+      purpose: 'Persistent state storage for real-time visitor metrics and telemetry records.',
+      why: 'Provides single-digit millisecond response times at any scale. Supports atomic numeric updates (ADD visitor_count :val) ensuring concurrency safety and preventing race conditions without database locks.',
+      specs: 'Capacity Mode: On-Demand (Pay-Per-Request) | Primary Key: id (String) | Concurrency: Atomic numeric increment expressions'
+    },
+    'terraform': {
+      title: 'HashiCorp Terraform',
+      badge: 'Infrastructure as Code (IaC)',
+      purpose: 'Declarative specification and lifecycle orchestration of all AWS cloud resources.',
+      why: 'Prevents configuration drift and manual ClickOps errors. Provides deterministic planning (terraform plan), automated resource dependency graphing, and version-controlled Git history.',
+      specs: 'Repository: Patelrahul4884/crc-terraform | Resources: S3, CloudFront, Lambda, API Gateway, DynamoDB, ACM, Route 53, IAM'
+    },
+    'githubactions': {
+      title: 'GitHub Actions CI/CD',
+      badge: 'Automated Delivery Pipeline',
+      purpose: 'Automated continuous integration, test validation, static asset deployment, and CDN cache invalidation.',
+      why: 'Triggers on every commit pushed to main. Deploys updated frontend assets directly to S3 and automatically issues a CloudFront cache invalidation (/*) to guarantee immediate global updates.',
+      specs: 'Repository: Patelrahul4884/crc-frontend | Steps: Checkout -> Configure AWS Credentials -> S3 Sync -> CloudFront Invalidation'
+    }
+  };
+
+  function selectArchNode(nodeKey) {
+    const data = archNodesData[nodeKey];
+    if (!data) return;
+
+    $('.arch-node').removeClass('active').attr('aria-selected', 'false');
+    $('.arch-node[data-node="' + nodeKey + '"]').addClass('active').attr('aria-selected', 'true');
+
+    const $inspector = $('#archInspector');
+    if ($inspector.length) {
+      $inspector.css('opacity', '0.4');
+      setTimeout(function() {
+        $('#inspector-title').text(data.title);
+        $('#inspector-badge').text(data.badge);
+        $('#inspector-purpose').text(data.purpose);
+        $('#inspector-why').text(data.why);
+        $('#inspector-specs').html('<strong>Configuration Specs:</strong> ' + data.specs);
+        $inspector.css('opacity', '1');
+      }, 150);
+    }
+  }
+
+  $(document).on('click', '.arch-node', function() {
+    const nodeKey = $(this).data('node');
+    selectArchNode(nodeKey);
+  });
+
+  $(document).on('keydown', '.arch-node', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const nodeKey = $(this).data('node');
+      selectArchNode(nodeKey);
+    }
+  });
+
+  // ═══════════════════════════════════════════
+  // TECHNICAL CASE STUDY MODAL
+  // ═══════════════════════════════════════════
+
+  $(document).on('click', '.case-modal-trigger', function(e) {
+    e.preventDefault();
+    const modalId = $(this).data('case-target') || 'modal-case-study';
+    const $modal = $('#' + modalId);
+    if ($modal.length) {
+      $modal.addClass('visible');
+      $('body').css('overflow', 'hidden');
+      $modal.find('.case-modal-close').focus();
+    }
+  });
+
+  $(document).on('click', '.case-modal-close', function() {
+    $(this).closest('.case-modal-overlay').removeClass('visible');
+    $('body').css('overflow', '');
+  });
+
+  $(document).on('click', '.case-modal-overlay', function(e) {
+    if ($(e.target).hasClass('case-modal-overlay')) {
+      $(this).removeClass('visible');
+      $('body').css('overflow', '');
+    }
+  });
+
+  // ═══════════════════════════════════════════
   // CERTIFICATE POPUP MODALS
   // ═══════════════════════════════════════════
 
@@ -181,10 +312,12 @@
     }
   });
 
-  // Close modal on Escape
+  // Close modals on Escape
   $(document).on('keydown', function(e) {
     if (e.key === 'Escape') {
       $('.cert-modal-overlay.visible').removeClass('visible');
+      $('.case-modal-overlay.visible').removeClass('visible');
+      $('body').css('overflow', '');
     }
   });
 
@@ -270,4 +403,27 @@
     }
   }
 
+  // ═══════════════════════════════════════════
+  // VISITOR TELEMETRY SYNC
+  // ═══════════════════════════════════════════
+
+  function syncVisitorCount() {
+    const count = $('#visitors').text().trim();
+    if (count && count !== '—') {
+      $('.visitors-sync').text(count);
+    }
+  }
+
+  const visitorsEl = document.getElementById('visitors');
+  if (visitorsEl && window.MutationObserver) {
+    const visitorObserver = new MutationObserver(function() {
+      syncVisitorCount();
+    });
+    visitorObserver.observe(visitorsEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  setTimeout(syncVisitorCount, 1500);
+  setTimeout(syncVisitorCount, 3000);
+
 })(jQuery);
+
