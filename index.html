@@ -2,478 +2,549 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Rahul Patel — Cloud & DevOps Engineer. Building reliable cloud infrastructure and automation at scale. AWS, Terraform, Kubernetes, CI/CD.">
+  <meta name="author" content="Rahul Patel">
+  <meta name="theme-color" content="#06080d">
 
-  <title>Rahul Patel Resume</title>
+  <title>Rahul Patel — Cloud & DevOps Engineer</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-    rel="stylesheet">
+  <!-- Icons -->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
-  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="css/resume.min.css" rel="stylesheet">
-  <style>
-    #popup,
-    #popup1,
-    #popup2 {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    img {
-      width: 100%;
-      height: auto;
-      max-width: 600px;
-      max-height: 400px;
-    }
-  </style>
+  <!-- Design System -->
+  <link href="css/space.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">Rahul Patel</span>
-      <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.png" alt="">
-      </span>
+  <!-- Starfield Canvas -->
+  <canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav-main" id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="#page-top" class="nav-brand js-scroll-trigger" aria-label="Go to top">
+      <span class="nav-brand-icon">RP</span>
+      <span>Rahul Patel</span>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">EDUCATION & TRAINING </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#awards">Certifications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
-        </li>
-      </ul>
-    </div>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#about" class="js-scroll-trigger">About</a></li>
+      <li><a href="#experience" class="js-scroll-trigger">Experience</a></li>
+      <li><a href="#education" class="js-scroll-trigger">Education</a></li>
+      <li><a href="#skills" class="js-scroll-trigger">Skills</a></li>
+      <li><a href="#projects" class="js-scroll-trigger">Projects</a></li>
+      <li><a href="#certifications" class="js-scroll-trigger">Certifications</a></li>
+      <li><a href="#interests" class="js-scroll-trigger">Interests</a></li>
+      <li><a href="#contact" class="js-scroll-trigger">Contact</a></li>
+    </ul>
   </nav>
 
-  <div class="container-fluid p-0">
+  <!-- Page Content -->
+  <main class="page-content">
 
-    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-      <div class="my-auto">
-        <h1 class="mb-0">Rahul
-          <span class="text-primary">Patel</span>
-        </h1>
-        <div class="subheading mb-5"> Surat, +91 957******4 ·
-          <a href="mailto:name@email.com">patelr4142@gmail.com</a>
-        </div>
-        <ul class="list-inline list-social-icons mb-0">
-          <li class="list-inline-item">
-            <a href="https://twitter.com/U_N_R_3_A_L" target="_blank">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://www.linkedin.com/in/rahul-patel-08805313a/" target="_blank">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://github.com/Patelrahul4884" target="_blank">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://rahul-patel.hashnode.dev/" target="_blank">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <!-- <i class="fa fa-hashnode fa-stack-1x fa-inverse"></i> -->
-                <i class="fa-brands fa-hashnode"></i>
-              </span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://medium.com/@U_N_R_3_A_L" target="_blank">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-medium fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-        </ul>
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-status reveal">
+        <span class="status-dot"></span>
+        <span>System Online</span>
+      </div>
+
+      <h1 class="hero-name reveal reveal-delay-1">
+        Rahul<br><span class="name-highlight">Patel</span>
+      </h1>
+
+      <div class="hero-tags reveal reveal-delay-2">
+        <span>Cloud</span>
+        <span class="tag-sep">•</span>
+        <span>DevOps</span>
+        <span class="tag-sep">•</span>
+        <span>AWS</span>
+        <span class="tag-sep">•</span>
+        <span>Automation</span>
+      </div>
+
+      <p class="hero-intro reveal reveal-delay-2">
+        Cloud & DevOps Engineer building reliable infrastructure, automating deployments, and architecting scalable solutions on AWS. Passionate about serverless, infrastructure as code, and continuous delivery.
+      </p>
+
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#experience" class="btn-primary-glow js-scroll-trigger">↓ Explore My Work</a>
+        <a href="#contact" class="btn-outline js-scroll-trigger">Connect</a>
+        <a href="https://github.com/Patelrahul4884" class="btn-outline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/rahul-patel-08805313a/" class="btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+
+      <div class="hero-telemetry reveal reveal-delay-4">
+        <span class="telemetry-label">Visitor Telemetry</span>
+        <span class="telemetry-value" id="visitors">—</span>
+      </div>
+
+      <!-- Orbital decoration -->
+      <div class="hero-orbital" aria-hidden="true">
+        <div class="orbital-ring"><div class="orbital-dot"></div></div>
+        <div class="orbital-ring"><div class="orbital-dot"></div></div>
+        <div class="orbital-ring"></div>
       </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-      <div class="my-auto">
-        <h2 class="mb-5">Experience</h2>
+    <hr class="section-divider">
 
-        <div class="resume-item d-flex flex-column flex-md-row mb-5">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">Cloud DevOps Engineer</h3>
-            <div class="subheading mb-3">
-              NICE, <b>City:</b> Pune, <b>Country:</b> India</div>
+    <!-- ═══════════ ABOUT ═══════════ -->
+    <section class="section" id="about">
+      <div class="section-header reveal">
+        <div class="section-label">Mission Profile</div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <img class="about-profile-img" src="img/profile.png" alt="Rahul Patel — Cloud & DevOps Engineer">
+          <p>
+            I'm a Cloud & DevOps Engineer with experience designing and implementing scalable cloud infrastructure on AWS. Currently working at NICE in Pune, India, where I focus on cloud-native solutions, serverless architectures, and DevOps automation.
+          </p>
+          <p>
+            Previously at Tata Consultancy Services, I built serverless backends with AWS Lambda, DynamoDB, and API Gateway, orchestrated infrastructure with Terraform, and implemented CI/CD pipelines using Azure DevOps and GitHub Actions. I'm passionate about building reliable systems and automating everything.
+          </p>
+        </div>
+
+        <div class="meta-cards reveal reveal-delay-1">
+          <div class="meta-card">
+            <div class="meta-card-label">Location</div>
+            <div class="meta-card-value">Pune, India</div>
           </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">May 2023 - Present</span>
+          <div class="meta-card">
+            <div class="meta-card-label">Experience</div>
+            <div class="meta-card-value">3+ Years</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">Specialization</div>
+            <div class="meta-card-value">Cloud & DevOps</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">Current Status</div>
+            <div class="meta-card-value" style="display:flex;align-items:center;gap:0.4rem;">
+              <span class="status-dot"></span> Active
+            </div>
           </div>
         </div>
-        <div class="resume-item d-flex flex-column flex-md-row mb-5">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">System Engineer</h3>
-            <div class="subheading mb-3">
-              TATA Consultancy Services, <b>City:</b> Pune, <b>Country:</b> India</div>
-            <h5>AWS Developer: -</h5>
-            <ul>
-              <li>
-                Designed and implemented serverless architecture using AWS Lambda, DynamoDB, AWS Glue and API Gateway to
-                create a highly scalable and cost-effective backend.
-              </li>
-              <li>
-                Orchestrated cloud infrastructure provisioning and management using Terraform, improving resource
-                consistency and
-                scalability
-              </li>
-              <li>
-                Implemented CI/CD pipelines for deploying and managing Lambda functions and APIs, enhancing development
-                efficiency and reliability.
-              </li>
-              <li>
-                Integrated Azure Repos into the development workflow, ensuring version control and code collaboration
-                with team
-                members.
-              </li>
-              <li>
-                Orchestrated the deployment and continuous integration/continuous delivery (CI/CD) pipelines with Azure
-                DevOps,
-                automating software releases and updates.
-              </li>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ EXPERIENCE ═══════════ -->
+    <section class="section" id="experience">
+      <div class="section-header reveal">
+        <div class="section-label">Mission Log</div>
+        <h2 class="section-title">Experience</h2>
+      </div>
+
+      <div class="timeline">
+        <!-- Mission 02 — NICE -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="mission-label">Mission 02 — Active</div>
+          <div class="mission-card">
+            <h3>Cloud DevOps Engineer</h3>
+            <div class="mission-company">NICE</div>
+            <div class="mission-meta">
+              <span class="mission-meta-item">May 2023 – Present</span>
+              <span class="mission-meta-item"><span class="dot"></span> Pune, India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission 01 — TCS -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="mission-label">Mission 01 — Completed</div>
+          <div class="mission-card">
+            <h3>System Engineer</h3>
+            <div class="mission-company">TATA Consultancy Services</div>
+            <div class="mission-meta">
+              <span class="mission-meta-item">May 2021 – May 2023</span>
+              <span class="mission-meta-item"><span class="dot"></span> Pune, India</span>
+            </div>
+
+            <div class="mission-label mt-2">AWS Developer</div>
+            <ul class="mission-details">
+              <li>Designed and implemented serverless architecture using AWS Lambda, DynamoDB, AWS Glue and API Gateway to create a highly scalable and cost-effective backend.</li>
+              <li>Orchestrated cloud infrastructure provisioning and management using Terraform, improving resource consistency and scalability.</li>
+              <li>Implemented CI/CD pipelines for deploying and managing Lambda functions and APIs, enhancing development efficiency and reliability.</li>
+              <li>Integrated Azure Repos into the development workflow, ensuring version control and code collaboration with team members.</li>
+              <li>Orchestrated the deployment and continuous integration/continuous delivery (CI/CD) pipelines with Azure DevOps, automating software releases and updates.</li>
             </ul>
-            <p>Mendix Developer: -</p>
-            <ul>
-              <li>
-                Instrumental in Mendix development, involved working on stories: performing code changes with unit
-                testing
-                and attending the code review with senior developers before committing to the branch. Performed
-                deployment
-                to Mendix Test Environments.
-              </li>
-              <li>
-                Key individual and team player working in an Agile environment with daily scrum calls, provided updates
-                to
-                ensure the next build release metthe business requirements and deadlines.
-              </li>
-              <li>
-                For user adoption - responsible for updating documentation of the Mendix: step-by-step instructions and
-                screenshots on how to set up the application, and workflow from code changes to deployment.
-              </li>
-            </ul>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">May 2021 - May 2023</span>
-          </div>
-        </div>
 
-    </section>
-
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
-      <div class="my-auto">
-        <h2 class="mb-5">Education</h2>
-
-        <div class="resume-item d-flex flex-column flex-md-row mb-5">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">Shri S'ad Vidya Mandal Institute Of Technology</h3>
-            <div class="subheading mb-3">Bachelor of Engineering</div>
-            <div>Information Technology</div>
-            <p>CGPA: 8.13</p>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">August 2016 - May 2020</span>
-          </div>
-        </div>
-        <h2 class="mb-5">Training</h2>
-
-        <div class="resume-item d-flex flex-column flex-md-row">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">DevOps Engineer </h3>
-            <div class="subheading mb-3">Edureka -
-
-              <a target="_blank"
-                href="https://medium.com/@U_N_R_3_A_L/how-to-achieve-seamless-ci-cd-with-github-jenkins-docker-and-kubernetes-9c11a322a2c3">Project</a>
-              -
-              <a href="#education" id="showImageButton">Certificate</a>
-
-              <div id="popup">
-                <img src="img/DevOps Pro.jpg" alt="Image Viewer">
-                <button onclick="closePopup()">Close</button>
-              </div>
+            <div class="mission-tech-tags">
+              <span class="tech-tag">AWS Lambda</span>
+              <span class="tech-tag">DynamoDB</span>
+              <span class="tech-tag">API Gateway</span>
+              <span class="tech-tag">Terraform</span>
+              <span class="tech-tag">Azure DevOps</span>
+              <span class="tech-tag">AWS Glue</span>
             </div>
           </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">March'23</span>
-          </div>
         </div>
-        <div class="resume-item d-flex flex-column flex-md-row">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">Be A DevOps Pro </h3>
-            <div class="subheading mb-3">INeuron -
-
-              <a href="#education" id="showImageButton1">Certificate</a>
-
-              <div id="popup1">
-                <img src="img/7fd3c0f2-203d-4b4a-91ff-4eb2717c8274.png" alt="Image Viewer">
-                <button onclick="closePopup1()">Close</button>
-              </div>
-
-            </div>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">October 2022 - Feb 2023</span>
-          </div>
-        </div>
-
-        <div class="resume-item d-flex flex-column flex-md-row">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">Python for Data Science Professional </h3>
-            <div class="subheading mb-3">Edureka -
-
-              <a href="#education" id="showImageButton2">Certificate</a>
-
-              <div id="popup2">
-                <img src="img/certificate_508be1261b52dd275be7b407263e9472_page-0001.jpg" alt="Image Viewer">
-                <button onclick="closePopup2()">Close</button>
-              </div>
-
-            </div>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">January'22</span>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
-      <div class="my-auto">
-        <h2 class="mb-5">Skills</h2>
+    <hr class="section-divider">
 
-        <div class="subheading mb-3">Programming Languages, Framework &amp; Tools</div>
-        <p>Python / PowerShell / Terraform / Docker / Kubernetes / Git / Django / Django REST framework / Numpy / Pandas
-          / Postman / Low
-          code
-          Platform (Mendix) / Jira / Agile / Scrum </p>
-        <div class="subheading mb-3">Public Cloud</div>
-        <p>AWS: Lambda / S3 / DynamoDB / EC2 / Glue / API Gateway / CloudWatch / AWS DevOps / Route 53 / AWS SAM </p>
+    <!-- ═══════════ EDUCATION ═══════════ -->
+    <section class="section" id="education">
+      <div class="section-header reveal">
+        <div class="section-label">Training Academy</div>
+        <h2 class="section-title">Education & Training</h2>
+      </div>
 
-        <div class="subheading mb-3">CI/CD Tools</div>
-        <p>Github Actions / AWS CodePipeline / Azure DevOps</p>
-    </section>
+      <div class="edu-card reveal">
+        <h3>Shri S'ad Vidya Mandal Institute Of Technology</h3>
+        <div class="edu-degree">Bachelor of Engineering — Information Technology</div>
+        <div class="edu-meta">CGPA: 8.13 · August 2016 – May 2020</div>
+      </div>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
-      <div class="my-auto">
-        <h2 class="mb-5">Projects</h2>
+      <div class="section-label mt-3 reveal">Professional Training</div>
 
-        <div class="subheading mb-3">Cloud Resume Challenge - AWS (This website)</div>
-        <p>
-          Successfully completed the Cloud Resume Challenge, a project designed to enhance proficiency in cloud
-          computing,
-          particularly within Amazon Web Services (AWS). Developed and deployed a resume website hosted on AWS,
-          incorporating RESTful API functionalities and implementing CI/CD pipelines using GitHub Actions for automated
-          deployment. Acquired hands-on experience with various AWS services, including API Gateway, S3, Lambda,
-          DynamoDB, IAM, CloudFront, Route53, Certificate Manager and AWS Organization. Strengthened skills in
-          infrastructure
-          as code (IaC) with Terraform, serverless architecture, and DevOps practices. </p>
-    </section>
-
-
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
-      <div class="my-auto">
-        <h2 class="mb-5">Certifications &amp; Awards</h2>
-        <h5>AWS Badges</h5>
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="29cfd6dc-7cd6-48d3-bf10-57daf7f36e4b"
-          data-share-badge-host="https://www.credly.com">
-        </div>
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="3f0cc417-8f58-4ecb-8baf-e6cdf894bf67"
-          data-share-badge-host="https://www.credly.com"></div>
-        <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="d1e45332-7fc0-4483-89f7-6a5d1171c85e"
-          data-share-badge-host="https://www.credly.com">
+      <div class="training-grid">
+        <div class="training-card reveal">
+          <h4>DevOps Engineer</h4>
+          <div class="training-provider">Edureka</div>
+          <div class="training-date">March 2023</div>
+          <div class="training-links">
+            <a href="https://medium.com/@U_N_R_3_A_L/how-to-achieve-seamless-ci-cd-with-github-jenkins-docker-and-kubernetes-9c11a322a2c3" target="_blank" rel="noopener noreferrer">Project ↗</a>
+            <a href="#" class="cert-popup-trigger" data-cert="popup-devops">Certificate</a>
+          </div>
         </div>
 
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="a3321b90-65fd-4149-959a-31875d67ccbd"
-          data-share-badge-host="https://www.credly.com">
+        <div class="training-card reveal reveal-delay-1">
+          <h4>Be A DevOps Pro</h4>
+          <div class="training-provider">INeuron</div>
+          <div class="training-date">October 2022 – February 2023</div>
+          <div class="training-links">
+            <a href="#" class="cert-popup-trigger" data-cert="popup-ineuron">Certificate</a>
+          </div>
         </div>
 
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="f52933e9-395c-4358-b9a2-f22ed842566d"
-          data-share-badge-host="https://www.credly.com">
+        <div class="training-card reveal reveal-delay-2">
+          <h4>Python for Data Science Professional</h4>
+          <div class="training-provider">Edureka</div>
+          <div class="training-date">January 2022</div>
+          <div class="training-links">
+            <a href="#" class="cert-popup-trigger" data-cert="popup-python">Certificate</a>
+          </div>
         </div>
-
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="9e2221fe-da5d-4712-af28-75f737003b29"
-          data-share-badge-host="https://www.credly.com">
-        </div>
-
-        <!-- <ul class="fa-ul mb-0">
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-              </li>
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-                Mobile Web Specialist - Google Certification
-              </li>
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-                1<sup>st</sup>
-                Place - University of Colorado Boulder - Emerging Tech Competition 2009
-              </li>
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-                1<sup>st</sup>
-                Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-              </li>
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-                2<sup>nd</sup>
-                Place - University of Colorado Boulder - Emerging Tech Competition 2008
-              </li>
-              <li>
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-                1<sup>st</sup>
-                Place - James Buchanan High School - Hackathon 2006
-              </li>
-              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
-                3<sup>rd</sup>
-                Place - James Buchanan High School - Hackathon 2005
-              </li>
-            </ul> -->
       </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
-      <div class="my-auto">
-        <h2 class="mb-5">Interests</h2>
-        <p class="mb-0"><b>Technology</b> - In the era of tech, Technology now becomes a key part of human life and I
-          love to discover and learn
-          new technologies.</p>
-        <p class="mb-0"><b>Sports</b> - Enthusiastic badminton player, Play and watch Cricket, Football to a good
-          standard and enjoy watching Formula
-          1, and swimming and some initial diving and a passion I like to do more of.</p>
-        <p class="mb-0"><b>Travelling </b> - I love exploring new places, cultures, and experiences.</p>
-        <p class="mb-0"><b>Space</b> - I love to explore space-related things, whether it is advancement of Science and
-          the vision of the Space
-          exploration to Mars.</p>
+    <!-- Certificate Popups (Modal Overlays) -->
+    <div class="cert-modal-overlay" id="popup-devops" role="dialog" aria-modal="true" aria-label="DevOps Engineer Certificate">
+      <div class="cert-modal">
+        <button class="cert-modal-close" aria-label="Close">&times;</button>
+        <img src="img/DevOps Pro.jpg" alt="Edureka DevOps Engineer Certificate">
+      </div>
+    </div>
+    <div class="cert-modal-overlay" id="popup-ineuron" role="dialog" aria-modal="true" aria-label="INeuron DevOps Pro Certificate">
+      <div class="cert-modal">
+        <button class="cert-modal-close" aria-label="Close">&times;</button>
+        <img src="img/7fd3c0f2-203d-4b4a-91ff-4eb2717c8274.png" alt="INeuron Be A DevOps Pro Certificate">
+      </div>
+    </div>
+    <div class="cert-modal-overlay" id="popup-python" role="dialog" aria-modal="true" aria-label="Python for Data Science Certificate">
+      <div class="cert-modal">
+        <button class="cert-modal-close" aria-label="Close">&times;</button>
+        <img src="img/certificate_508be1261b52dd275be7b407263e9472_page-0001.jpg" alt="Edureka Python for Data Science Certificate">
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ SKILLS ═══════════ -->
+    <section class="section" id="skills">
+      <div class="section-header reveal">
+        <div class="section-label">Systems Dashboard</div>
+        <h2 class="section-title">Skills & Technologies</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-panel reveal">
+          <div class="skill-panel-header">Cloud Services — AWS</div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip">AWS Lambda</span>
+            <span class="skill-chip">S3</span>
+            <span class="skill-chip">DynamoDB</span>
+            <span class="skill-chip">EC2</span>
+            <span class="skill-chip">AWS Glue</span>
+            <span class="skill-chip">API Gateway</span>
+            <span class="skill-chip">CloudWatch</span>
+            <span class="skill-chip">AWS DevOps</span>
+            <span class="skill-chip">Route 53</span>
+            <span class="skill-chip">AWS SAM</span>
+          </div>
+        </div>
+
+        <div class="skill-panel reveal reveal-delay-1">
+          <div class="skill-panel-header">Programming & Frameworks</div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">PowerShell</span>
+            <span class="skill-chip">Django</span>
+            <span class="skill-chip">Django REST</span>
+            <span class="skill-chip">NumPy</span>
+            <span class="skill-chip">Pandas</span>
+          </div>
+        </div>
+
+        <div class="skill-panel reveal reveal-delay-2">
+          <div class="skill-panel-header">DevOps & Infrastructure</div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip">Terraform</span>
+            <span class="skill-chip">Docker</span>
+            <span class="skill-chip">Kubernetes</span>
+            <span class="skill-chip">Git</span>
+          </div>
+        </div>
+
+        <div class="skill-panel reveal reveal-delay-3">
+          <div class="skill-panel-header">CI/CD & Tools</div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip">GitHub Actions</span>
+            <span class="skill-chip">AWS CodePipeline</span>
+            <span class="skill-chip">Azure DevOps</span>
+            <span class="skill-chip">Postman</span>
+            <span class="skill-chip">Mendix</span>
+            <span class="skill-chip">Jira</span>
+            <span class="skill-chip">Agile</span>
+            <span class="skill-chip">Scrum</span>
+          </div>
+        </div>
       </div>
     </section>
 
-  </div>
-  <p>Visitor: <span id="visitors"></span></p>
-  <!-- <p>Visitor: <span id="visitorsRDS"></span></p> -->
+    <hr class="section-divider">
 
-  <!-- Bootstrap core JavaScript -->
+    <!-- ═══════════ PROJECTS ═══════════ -->
+    <section class="section" id="projects">
+      <div class="section-header reveal">
+        <div class="section-label">Engineering Missions</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-mission-id">Mission CRC-001</div>
+          <h3>🚀 Cloud Resume Challenge — AWS</h3>
+          <div class="project-status active">Active — This Website</div>
+          <p>
+            Successfully completed the Cloud Resume Challenge, a project designed to enhance proficiency in cloud computing, particularly within Amazon Web Services (AWS). Developed and deployed a resume website hosted on AWS, incorporating RESTful API functionalities and implementing CI/CD pipelines using GitHub Actions for automated deployment. Acquired hands-on experience with various AWS services, including API Gateway, S3, Lambda, DynamoDB, IAM, CloudFront, Route53, Certificate Manager and AWS Organization. Strengthened skills in infrastructure as code (IaC) with Terraform, serverless architecture, and DevOps practices.
+          </p>
+          <div class="project-stack">
+            <span class="tech-tag">AWS S3</span>
+            <span class="tech-tag">CloudFront</span>
+            <span class="tech-tag">Lambda</span>
+            <span class="tech-tag">DynamoDB</span>
+            <span class="tech-tag">API Gateway</span>
+            <span class="tech-tag">Route 53</span>
+            <span class="tech-tag">Terraform</span>
+            <span class="tech-tag">GitHub Actions</span>
+            <span class="tech-tag">Certificate Manager</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ CERTIFICATIONS ═══════════ -->
+    <section class="section" id="certifications">
+      <div class="section-header reveal">
+        <div class="section-label">Credentials Vault</div>
+        <h2 class="section-title">Certifications & Awards</h2>
+      </div>
+
+      <div class="section-label mb-2 reveal">AWS Badges</div>
+
+      <div class="certs-grid reveal">
+        <div class="cert-card">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="29cfd6dc-7cd6-48d3-bf10-57daf7f36e4b"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="3f0cc417-8f58-4ecb-8baf-e6cdf894bf67"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="d1e45332-7fc0-4483-89f7-6a5d1171c85e"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="a3321b90-65fd-4149-959a-31875d67ccbd"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="f52933e9-395c-4358-b9a2-f22ed842566d"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="9e2221fe-da5d-4712-af28-75f737003b29"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+      </div>
+
+      <!-- Credly embed script (single load) -->
+      <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ INTERESTS ═══════════ -->
+    <section class="section" id="interests">
+      <div class="section-header reveal">
+        <div class="section-label">Off-Duty Log</div>
+        <h2 class="section-title">Interests</h2>
+      </div>
+
+      <div class="interests-grid">
+        <div class="interest-card reveal">
+          <div class="interest-icon">🌐</div>
+          <h4>Technology</h4>
+          <p>In the era of tech, technology has become a key part of human life. I love to discover and learn new technologies.</p>
+        </div>
+
+        <div class="interest-card reveal reveal-delay-1">
+          <div class="interest-icon">⚽</div>
+          <h4>Sports</h4>
+          <p>Enthusiastic badminton player. Play and watch Cricket, Football. Enjoy watching Formula 1, swimming, and diving.</p>
+        </div>
+
+        <div class="interest-card reveal reveal-delay-2">
+          <div class="interest-icon">✈️</div>
+          <h4>Travelling</h4>
+          <p>I love exploring new places, cultures, and experiences.</p>
+        </div>
+
+        <div class="interest-card reveal reveal-delay-3">
+          <div class="interest-icon">🚀</div>
+          <h4>Space</h4>
+          <p>I love to explore space-related things, the advancement of science and the vision of space exploration to Mars.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section class="section" id="contact">
+      <div class="section-header reveal">
+        <div class="section-label">Communications</div>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p>Interested in working together, have a question, or just want to connect? Feel free to reach out through any of the channels below.</p>
+
+          <div class="contact-links">
+            <a href="mailto:patelr4142@gmail.com" class="contact-link-item">
+              <span class="link-icon"><i class="fa fa-envelope"></i></span>
+              patelr4142@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/rahul-patel-08805313a/" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+              <span class="link-icon"><i class="fa fa-linkedin"></i></span>
+              LinkedIn
+            </a>
+            <a href="https://github.com/Patelrahul4884" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+              <span class="link-icon"><i class="fa fa-github"></i></span>
+              GitHub
+            </a>
+            <a href="https://twitter.com/U_N_R_3_A_L" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+              <span class="link-icon"><i class="fa fa-twitter"></i></span>
+              Twitter
+            </a>
+            <a href="https://rahul-patel.hashnode.dev/" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+              <span class="link-icon"><i class="fa fa-pencil"></i></span>
+              Hashnode Blog
+            </a>
+            <a href="https://medium.com/@U_N_R_3_A_L" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+              <span class="link-icon"><i class="fa fa-medium"></i></span>
+              Medium
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-status reveal reveal-delay-1">
+          <div class="contact-status-item">
+            <span class="contact-status-label">Status</span>
+            <span class="contact-status-value text-green">● Online</span>
+          </div>
+          <div class="contact-status-item">
+            <span class="contact-status-label">Location</span>
+            <span class="contact-status-value">India</span>
+          </div>
+          <div class="contact-status-item">
+            <span class="contact-status-label">Response Time</span>
+            <span class="contact-status-value">< 24h</span>
+          </div>
+          <div class="contact-status-item">
+            <span class="contact-status-label">Open to Work</span>
+            <span class="contact-status-value text-green">Yes</span>
+          </div>
+          <div class="contact-status-item">
+            <span class="contact-status-label">Last Updated</span>
+            <span class="contact-status-value">2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-left">
+        © 2026 Rahul Patel · Cloud Resume Challenge
+      </div>
+      <div class="footer-right">
+        Built with AWS · S3 · CloudFront · Lambda · DynamoDB
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/resume.min.js"></script>
-  <script>
-    const showImageButton = document.getElementById("showImageButton");
-    const showImageButton1 = document.getElementById("showImageButton1");
-    const showImageButton2 = document.getElementById("showImageButton2");
-
-    const popup = document.getElementById("popup");
-    const popup1 = document.getElementById("popup1");
-    const popup2 = document.getElementById("popup2");
-
-
-
-    showImageButton.addEventListener("click", () => {
-      popup.style.display = "block";
-    });
-    showImageButton1.addEventListener("click", () => {
-      popup1.style.display = "block";
-    });
-    showImageButton2.addEventListener("click", () => {
-      popup2.style.display = "block";
-    });
-
-    function closePopup() {
-      popup.style.display = "none";
-    }
-    function closePopup1() {
-      popup1.style.display = "none";
-    }
-    function closePopup2() {
-      popup2.style.display = "none";
-    }
-  </script>
-  <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+  <script src="js/resume.js"></script>
   <script src="js/visitor_count.js"></script>
-  <!-- RDS Setup -->
-  <!-- <script>
-    // GET API REQUEST
-    async function get_visitors_rds() {
-      // call post api request function
-      //await post_visitor();
-      try {
-        let response = await fetch('https://quyq4owx8i.execute-api.us-east-1.amazonaws.com/Prod/rdsVisitCounter', {
-          method: 'GET',
-        });
-        let data = await response.json()
-        document.getElementById("visitorsRDS").innerHTML = data['visitor_count'];
-        console.log(data);
-        return data;
-      } catch (err) {
-        console.error(err);
-      }
-    }
 
-    get_visitors_rds();
-
-  </script> -->
 </body>
-
 </html>
