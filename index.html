@@ -44,9 +44,9 @@
       <li><a href="#about" class="js-scroll-trigger">About</a></li>
       <li><a href="#system" class="js-scroll-trigger">System</a></li>
       <li><a href="#projects" class="js-scroll-trigger">Projects</a></li>
-      <li><a href="#lab" class="js-scroll-trigger">Lab</a></li>
-      <li><a href="#skills" class="js-scroll-trigger">Skills</a></li>
       <li><a href="#experience" class="js-scroll-trigger">Experience</a></li>
+      <li><a href="#skills" class="js-scroll-trigger">Skills</a></li>
+      <li><a href="#certifications" class="js-scroll-trigger">Certifications</a></li>
       <li><a href="#contact" class="js-scroll-trigger">Contact</a></li>
     </ul>
   </nav>
@@ -110,12 +110,18 @@
 
       <div class="about-grid">
         <div class="about-text reveal">
-          <img class="about-profile-img" src="img/profile.png" alt="Rahul Patel — Cloud & DevOps Engineer">
-          <p>
-            I'm a Cloud & DevOps Engineer with experience designing and implementing scalable cloud infrastructure on AWS. Currently working at NICE in Pune, India, where I focus on cloud-native solutions, serverless architectures, and DevOps automation.
+          <div class="about-badge">
+            <span class="about-badge-icon">⚡</span>
+            <span>Mission Profile & Engineering Focus</span>
+          </div>
+          <p class="about-lead">
+            Cloud & DevOps Engineer specializing in scalable AWS cloud infrastructure, serverless architectures, and declarative automation.
           </p>
           <p>
-            Previously at Tata Consultancy Services, I built serverless backends with AWS Lambda, DynamoDB, and API Gateway, orchestrated infrastructure with Terraform, and implemented CI/CD pipelines using Azure DevOps and GitHub Actions. I'm passionate about building reliable systems and automating everything.
+            Currently working at NICE in Pune, India, focusing on cloud-native solutions, serverless backends, and CI/CD pipelines. Passionate about automating repetitive workflows, eliminating manual toil, and architecting resilient systems on AWS.
+          </p>
+          <p>
+            Previously at Tata Consultancy Services, I designed and implemented event-driven microservices with AWS Lambda, DynamoDB, and API Gateway, provisioned multi-tier infrastructure declaratively using Terraform, and built automated release pipelines with Azure DevOps and GitHub Actions.
           </p>
         </div>
 
@@ -129,14 +135,22 @@
             <div class="meta-card-value">3+ Years</div>
           </div>
           <div class="meta-card">
-            <div class="meta-card-label">Specialization</div>
-            <div class="meta-card-value">Cloud & DevOps</div>
+            <div class="meta-card-label">Primary Cloud</div>
+            <div class="meta-card-value">Amazon Web Services</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">Core Specialization</div>
+            <div class="meta-card-value">Serverless & IaC</div>
           </div>
           <div class="meta-card">
             <div class="meta-card-label">Current Status</div>
             <div class="meta-card-value" style="display:flex;align-items:center;gap:0.4rem;">
               <span class="status-dot"></span> Active
             </div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">Infrastructure State</div>
+            <div class="meta-card-value" style="color:var(--cyan-primary);">Live Production</div>
           </div>
         </div>
       </div>
@@ -213,13 +227,13 @@
         </div>
       </div>
 
-      <!-- Interactive System Diagram -->
+      <!-- Animated Interactive System Diagram -->
       <div class="arch-diagram-wrapper reveal reveal-delay-1">
         <div class="arch-header">
           <div>
-            <div class="arch-header-title">Live Production Topology</div>
+            <div class="arch-header-title">Mission Architecture & Request Flows</div>
             <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
-              End-to-end cloud infrastructure powering this domain and visitor counter.
+              End-to-end cloud infrastructure powering this domain and visitor telemetry.
             </div>
           </div>
           <div class="arch-header-hint">
@@ -227,98 +241,207 @@
           </div>
         </div>
 
-        <div class="arch-pipeline-group">
-          <!-- Pipeline 1: Static Distribution -->
-          <div class="arch-pipeline">
-            <div class="arch-pipeline-title">Static Content & Edge Distribution Pipeline</div>
-            <div class="arch-flow" role="tablist" aria-label="Static distribution pipeline">
-              
-              <button class="arch-node" data-node="route53" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">DNS Routing</div>
-                <div class="arch-node-name">Route 53</div>
-                <div class="arch-node-sub">Global Anycast</div>
-              </button>
+        <!-- Architecture Legend -->
+        <div class="arch-legend" aria-label="Architecture Legend">
+          <div class="legend-item">
+            <span class="legend-dot-flow"></span>
+            <span>Request / Data Flow</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-line-runtime"></span>
+            <span>Runtime Path</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-line-deploy"></span>
+            <span>Deployment / Infrastructure Relationship</span>
+          </div>
+        </div>
 
-              <div class="arch-arrow" aria-hidden="true"><span>→</span></div>
-
-              <button class="arch-node active" data-node="cloudfront" role="tab" aria-selected="true" tabindex="0">
-                <div class="arch-node-type">Edge CDN</div>
-                <div class="arch-node-name">CloudFront</div>
-                <div class="arch-node-sub">TLS 1.3 & Cache</div>
-              </button>
-
-              <div class="arch-arrow" aria-hidden="true"><span>→</span></div>
-
-              <button class="arch-node" data-node="s3" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">Object Store</div>
-                <div class="arch-node-name">Amazon S3</div>
-                <div class="arch-node-sub">Private Origin</div>
-              </button>
-
-              <div class="arch-arrow" aria-hidden="true"><span>→</span></div>
-
-              <button class="arch-node" data-node="frontend" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">Client Layer</div>
-                <div class="arch-node-name">Frontend SPA</div>
-                <div class="arch-node-sub">Browser Runtime</div>
-              </button>
-
-            </div>
+        <!-- Primary Architecture Flow 01: Static Frontend Delivery -->
+        <div class="arch-pipeline-container">
+          <div class="arch-pipeline-header">
+            <span class="arch-pipeline-tag cyan">Flow 01 · Frontend Delivery</span>
+            <span class="arch-pipeline-desc">Visitor → Route 53 → CloudFront → S3 → Static Frontend</span>
           </div>
 
-          <!-- Pipeline 2: Serverless Visitor Counter -->
-          <div class="arch-pipeline">
-            <div class="arch-pipeline-title purple">Serverless State & Visitor Telemetry Pipeline</div>
-            <div class="arch-flow" role="tablist" aria-label="Serverless telemetry pipeline">
-
-              <button class="arch-node purple" data-node="frontend" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">Client Fetch</div>
-                <div class="arch-node-name">Frontend SPA</div>
-                <div class="arch-node-sub">Asynchronous Request</div>
-              </button>
-
-              <div class="arch-arrow" aria-hidden="true"><span>→</span></div>
-
-              <button class="arch-node purple" data-node="apigateway" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">REST Endpoint</div>
-                <div class="arch-node-name">API Gateway</div>
-                <div class="arch-node-sub">CORS & Routing</div>
-              </button>
-
-              <div class="arch-arrow" aria-hidden="true"><span>→</span></div>
-
-              <button class="arch-node purple" data-node="lambda" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">Serverless Compute</div>
-                <div class="arch-node-name">AWS Lambda</div>
-                <div class="arch-node-sub">Python Mutation</div>
-              </button>
-
-              <div class="arch-arrow" aria-hidden="true"><span>→</span></div>
-
-              <button class="arch-node purple" data-node="dynamodb" role="tab" aria-selected="false" tabindex="0">
-                <div class="arch-node-type">NoSQL Database</div>
-                <div class="arch-node-name">DynamoDB</div>
-                <div class="arch-node-sub">Atomic Increment</div>
-              </button>
-
-            </div>
-          </div>
-
-          <!-- Supporting Foundation Bar -->
-          <div class="arch-foundations">
-            <div class="arch-foundations-label">Infrastructure Automation & CI/CD Delivery</div>
+          <div class="arch-flow flow-horizontal" role="tablist" aria-label="Static Frontend Delivery Pipeline">
             
-            <button class="arch-node" data-node="terraform" role="tab" aria-selected="false" tabindex="0">
-              <div class="arch-node-type">IaC Orchestration</div>
-              <div class="arch-node-name">HashiCorp Terraform</div>
-              <div class="arch-node-sub">Patelrahul4884/crc-terraform</div>
+            <button class="arch-node" data-node="visitor" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">Client Origin</div>
+              <div class="arch-node-name">Visitor</div>
+              <div class="arch-node-sub">Web Browser</div>
             </button>
 
-            <button class="arch-node" data-node="githubactions" role="tab" aria-selected="false" tabindex="0">
-              <div class="arch-node-type">Continuous Delivery</div>
-              <div class="arch-node-name">GitHub Actions</div>
-              <div class="arch-node-sub">S3 Sync & Invalidation</div>
+            <div class="arch-connector cyan" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow1-p1" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node node-pulse-cyan flow1-n1" data-node="route53" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">DNS Routing</div>
+              <div class="arch-node-name">Route 53</div>
+              <div class="arch-node-sub">Global Anycast</div>
             </button>
+
+            <div class="arch-connector cyan" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow1-p2" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node active node-pulse-cyan flow1-n2" data-node="cloudfront" role="tab" aria-selected="true" tabindex="0">
+              <div class="arch-node-type">Edge CDN</div>
+              <div class="arch-node-name">CloudFront</div>
+              <div class="arch-node-sub">TLS 1.3 & Cache</div>
+            </button>
+
+            <div class="arch-connector cyan" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow1-p3" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node node-pulse-cyan flow1-n3" data-node="s3" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">Object Store</div>
+              <div class="arch-node-name">Amazon S3</div>
+              <div class="arch-node-sub">Private Origin</div>
+            </button>
+
+            <div class="arch-connector cyan" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow1-p4" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node node-pulse-cyan flow1-n4" data-node="frontend" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">Client Layer</div>
+              <div class="arch-node-name">Static Frontend</div>
+              <div class="arch-node-sub">Browser Runtime</div>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Visitor Counter Flow 02: Serverless State & Telemetry -->
+        <div class="arch-pipeline-container">
+          <div class="arch-pipeline-header">
+            <span class="arch-pipeline-tag purple">Flow 02 · Visitor Telemetry</span>
+            <span class="arch-pipeline-desc">Visitor → API Gateway → AWS Lambda → DynamoDB</span>
+          </div>
+
+          <div class="arch-flow flow-horizontal" role="tablist" aria-label="Visitor Telemetry Pipeline">
+            
+            <button class="arch-node purple" data-node="visitor" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">Client Fetch</div>
+              <div class="arch-node-name">Visitor</div>
+              <div class="arch-node-sub">Async Telemetry</div>
+            </button>
+
+            <div class="arch-connector purple" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow2-p1" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node purple node-pulse-purple flow2-n1" data-node="apigateway" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">REST Endpoint</div>
+              <div class="arch-node-name">API Gateway</div>
+              <div class="arch-node-sub">CORS & Routing</div>
+            </button>
+
+            <div class="arch-connector purple" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow2-p2" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node purple node-pulse-purple flow2-n2" data-node="lambda" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">Serverless Compute</div>
+              <div class="arch-node-name">AWS Lambda</div>
+              <div class="arch-node-sub">Python Handler</div>
+            </button>
+
+            <div class="arch-connector purple" aria-hidden="true">
+              <svg class="conn-svg" viewBox="0 0 50 20">
+                <line class="conn-track" x1="2" y1="10" x2="42" y2="10" />
+                <polygon class="conn-head" points="40,7 46,10 40,13" />
+                <circle class="conn-dot flow2-p3" cx="2" cy="10" r="3" />
+              </svg>
+            </div>
+
+            <button class="arch-node purple node-pulse-purple flow2-n3" data-node="dynamodb" role="tab" aria-selected="false" tabindex="0">
+              <div class="arch-node-type">NoSQL Database</div>
+              <div class="arch-node-name">DynamoDB</div>
+              <div class="arch-node-sub">Atomic State</div>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Visually Separated Engineering & Deployment Layer -->
+        <div class="arch-deployment-layer">
+          <div class="arch-pipeline-header">
+            <span class="arch-pipeline-tag muted">Engineering & Deployment Architecture</span>
+            <span class="arch-pipeline-desc">Decoupled from runtime request paths · Declarative IaC & GitOps Delivery</span>
+          </div>
+
+          <div class="arch-deployment-grid">
+            <!-- Terraform Card -->
+            <div class="arch-deploy-card">
+              <div class="arch-deploy-card-top">
+                <button class="arch-node deploy-btn" data-node="terraform" role="tab" aria-selected="false" tabindex="0">
+                  <div class="arch-node-type">IaC Orchestration</div>
+                  <div class="arch-node-name">HashiCorp Terraform</div>
+                  <div class="arch-node-sub">Patelrahul4884/crc-terraform</div>
+                </button>
+              </div>
+              <div class="arch-deploy-relationship" aria-hidden="true">
+                <div class="deploy-rel-line">
+                  <span class="rel-dots">⋯⋯⋯⋯</span>
+                  <span class="rel-action">manages</span>
+                  <span class="rel-arrow">▼</span>
+                </div>
+                <div class="deploy-target-box">
+                  <div class="target-title">AWS Cloud Infrastructure</div>
+                  <div class="target-sub">S3 · CloudFront · Route 53 · API Gateway · Lambda · DynamoDB · ACM · IAM</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GitHub Actions Card -->
+            <div class="arch-deploy-card">
+              <div class="arch-deploy-card-top">
+                <button class="arch-node deploy-btn" data-node="githubactions" role="tab" aria-selected="false" tabindex="0">
+                  <div class="arch-node-type">Continuous Delivery</div>
+                  <div class="arch-node-name">GitHub Actions</div>
+                  <div class="arch-node-sub">Patelrahul4884/crc-frontend</div>
+                </button>
+              </div>
+              <div class="arch-deploy-relationship" aria-hidden="true">
+                <div class="deploy-rel-line">
+                  <span class="rel-dots">⋯⋯⋯⋯</span>
+                  <span class="rel-action">deploys</span>
+                  <span class="rel-arrow">▼</span>
+                </div>
+                <div class="deploy-target-box">
+                  <div class="target-title">Static Frontend & Edge Cache</div>
+                  <div class="target-sub">S3 Sync on push to main · Automated CloudFront Cache Invalidation (/*)</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -337,7 +460,7 @@
                 <i class="fa fa-info-circle"></i> Purpose
               </div>
               <div class="arch-inspector-text" id="inspector-purpose">
-                Global content delivery network caching static assets at 400+ edge Points of Presence.
+                Global content delivery layer used to distribute the static frontend through AWS edge locations.
               </div>
             </div>
 
@@ -346,12 +469,12 @@
                 <i class="fa fa-cogs"></i> Engineering Rationale (Why Chosen)
               </div>
               <div class="arch-inspector-text" id="inspector-why">
-                Eliminates public internet latency to S3, enforces TLS 1.3 encryption with ACM SSL certificates, reduces bandwidth transfer costs, and protects the origin using AWS Shield Standard DDoS mitigation.
+                Provides CDN delivery and HTTPS support while keeping the S3 origin private via Origin Access Control (OAC), reducing origin load and latency to users worldwide with built-in AWS Shield Standard DDoS mitigation.
               </div>
             </div>
 
             <div class="arch-inspector-specs" id="inspector-specs">
-              <strong>Configuration Specs:</strong> Origin: S3 via Origin Access Control (OAC) | Protocol: HTTPS Redirect | Cache Policy: Managed-CachingOptimized | Compression: Gzip/Brotli
+              <strong>Configuration Specs:</strong> Origin: S3 via Origin Access Control (OAC) | Protocol: HTTPS Redirect | Cache Policy: Managed-CachingOptimized | Compression: Gzip/Brotli | TLS: 1.3
             </div>
           </div>
         </div>
@@ -381,7 +504,7 @@
               <i class="fa fa-check-circle"></i> Chosen Because
             </div>
             <p class="decision-text">
-              Zero baseline running cost for intermittent portfolio traffic. Automatically scales from 0 to thousands of concurrent requests without provisioning virtual machines or managing operating system patching.
+              Serverless services avoid always-on compute infrastructure and fit the low and variable traffic profile of this portfolio. Automatically scales with incoming request volume without provisioning virtual machines or managing operating system patching.
             </p>
           </div>
           <div class="decision-section">
@@ -415,7 +538,7 @@
               <i class="fa fa-check-circle"></i> Chosen Because
             </div>
             <p class="decision-text">
-              Allows the S3 origin bucket to be 100% private via Origin Access Control (OAC). Terminates TLS 1.3 at global edge locations and delivers sub-50ms latency worldwide with built-in AWS Shield DDoS mitigation.
+              Allows the S3 origin bucket to be 100% private via Origin Access Control (OAC). Terminates TLS 1.3 at global edge locations and distributes cached content through edge locations, reducing the distance between users and the content origin, with built-in AWS Shield Standard DDoS mitigation.
             </p>
           </div>
           <div class="decision-section">
@@ -538,6 +661,58 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ PROJECTS ═══════════ -->
+    <section class="section" id="projects">
+      <div class="section-header reveal">
+        <div class="section-label">Engineering Missions</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
+          Production cloud architectures, serverless backends, and automated deployment pipelines.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Mission CRC-001 -->
+        <div class="project-card reveal">
+          <div class="project-mission-id">Mission CRC-001 · Flagship Cloud Architecture</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+            <h3 style="margin:0;font-size:1.35rem;">🚀 Cloud Resume Challenge — AWS</h3>
+            <span class="project-status active" style="margin:0;">Operational · Live Production</span>
+          </div>
+          <p>
+            Architected and deployed a production serverless web application and real-time visitor telemetry platform on Amazon Web Services. Entire infrastructure provisioned declaratively via Terraform, featuring global edge CDN distribution with CloudFront, private S3 storage via Origin Access Control, serverless Python Lambda compute, and continuous deployment through GitHub Actions.
+          </p>
+          <div class="project-stack">
+            <span class="tech-tag">AWS S3</span>
+            <span class="tech-tag">CloudFront</span>
+            <span class="tech-tag">AWS Lambda</span>
+            <span class="tech-tag">DynamoDB</span>
+            <span class="tech-tag">API Gateway</span>
+            <span class="tech-tag">Route 53</span>
+            <span class="tech-tag">Terraform</span>
+            <span class="tech-tag">GitHub Actions</span>
+            <span class="tech-tag">ACM</span>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem;">
+            <button class="btn-primary-glow case-modal-trigger" data-case-target="modal-case-study">
+              📖 Technical Case Study
+            </button>
+            <a href="https://github.com/Patelrahul4884/crc-frontend" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              GitHub Frontend ↗
+            </a>
+            <a href="https://github.com/Patelrahul4884/crc-terraform" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              GitHub Terraform ↗
+            </a>
+            <a href="#system" class="btn-outline js-scroll-trigger">
+              View Architecture ↓
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -666,165 +841,6 @@
         <img src="img/certificate_508be1261b52dd275be7b407263e9472_page-0001.jpg" alt="Edureka Python for Data Science Certificate">
       </div>
     </div>
-
-    <hr class="section-divider">
-
-    <!-- ═══════════ PROJECTS ═══════════ -->
-    <section class="section" id="projects">
-      <div class="section-header reveal">
-        <div class="section-label">Engineering Missions</div>
-        <h2 class="section-title">Featured Projects</h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
-          Production cloud architectures, serverless backends, and automated deployment pipelines.
-        </p>
-      </div>
-
-      <div class="projects-grid">
-        <!-- Mission CRC-001 -->
-        <div class="project-card reveal">
-          <div class="project-mission-id">Mission CRC-001</div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
-            <h3 style="margin:0;">🚀 Cloud Resume Challenge — AWS</h3>
-            <span class="project-status active" style="margin:0;">Operational · Live Production</span>
-          </div>
-          <p>
-            Architected and deployed a production serverless web application and real-time visitor telemetry platform on Amazon Web Services. Entire infrastructure provisioned declaratively via Terraform, featuring global edge CDN distribution with CloudFront, private S3 storage via Origin Access Control, serverless Python Lambda compute, and continuous deployment through GitHub Actions.
-          </p>
-          <div class="project-stack">
-            <span class="tech-tag">AWS S3</span>
-            <span class="tech-tag">CloudFront</span>
-            <span class="tech-tag">AWS Lambda</span>
-            <span class="tech-tag">DynamoDB</span>
-            <span class="tech-tag">API Gateway</span>
-            <span class="tech-tag">Route 53</span>
-            <span class="tech-tag">Terraform</span>
-            <span class="tech-tag">GitHub Actions</span>
-            <span class="tech-tag">ACM</span>
-          </div>
-          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.25rem;">
-            <button class="btn-primary-glow case-modal-trigger" data-case-target="modal-case-study">
-              📖 Technical Case Study
-            </button>
-            <a href="https://github.com/Patelrahul4884/crc-frontend" target="_blank" rel="noopener noreferrer" class="btn-outline">
-              GitHub Frontend ↗
-            </a>
-            <a href="https://github.com/Patelrahul4884/crc-terraform" target="_blank" rel="noopener noreferrer" class="btn-outline">
-              GitHub Terraform ↗
-            </a>
-            <a href="#system" class="btn-outline js-scroll-trigger">
-              View Architecture ↓
-            </a>
-          </div>
-        </div>
-
-        <!-- Mission DEV-002 -->
-        <div class="project-card reveal reveal-delay-1">
-          <div class="project-mission-id">Mission DEV-002</div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
-            <h3 style="margin:0;">⚙️ Seamless CI/CD Automation Pipeline</h3>
-            <span class="project-status active" style="margin:0;border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.1);color:#60a5fa;">Deployed · Published Guide</span>
-          </div>
-          <p>
-            End-to-end automated continuous integration and delivery pipeline integrating GitHub webhooks, containerized Jenkins build stages, Docker image packaging and security verification, and automated rollouts onto a multi-node Kubernetes cluster. Authored a comprehensive technical architecture guide published on Medium detailing pipeline design and operational gotchas.
-          </p>
-          <div class="project-stack">
-            <span class="tech-tag">Kubernetes</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">Jenkins</span>
-            <span class="tech-tag">GitHub</span>
-            <span class="tech-tag">Helm</span>
-            <span class="tech-tag">Linux</span>
-            <span class="tech-tag">CI/CD</span>
-          </div>
-          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.25rem;">
-            <a href="https://medium.com/@U_N_R_3_A_L/how-to-achieve-seamless-ci-cd-with-github-jenkins-docker-and-kubernetes-9c11a322a2c3" target="_blank" rel="noopener noreferrer" class="btn-primary-glow">
-              Read Technical Article ↗
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- ═══════════ ENGINEERING LAB ═══════════ -->
-    <section class="section" id="lab">
-      <div class="section-header reveal">
-        <div class="section-label">Research & Development</div>
-        <h2 class="section-title">Engineering Lab</h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
-          Prototypes, proof-of-concepts, and reusable cloud infrastructure blueprints.
-        </p>
-      </div>
-
-      <div class="lab-grid reveal reveal-delay-1">
-        
-        <!-- Lab 1: Terraform IaC -->
-        <div class="lab-card">
-          <div>
-            <span class="lab-card-badge">IaC Sandbox</span>
-            <h3 class="lab-card-title">Terraform Multi-Tier Modules</h3>
-            <div class="lab-card-sub">Infrastructure as Code Architecture</div>
-            <p class="lab-card-desc">
-              Reusable Terraform module patterns featuring remote state backends in Amazon S3, DynamoDB state locking, parameterized variables, and least-privilege IAM policy generation.
-            </p>
-          </div>
-          <div class="lab-card-footer">
-            <span class="lab-card-status"><span class="status-pulse-dot"></span> Active Pattern</span>
-            <span class="tech-tag" style="padding:0.15rem 0.4rem;font-size:0.68rem;">Terraform · AWS</span>
-          </div>
-        </div>
-
-        <!-- Lab 2: CI/CD -->
-        <div class="lab-card">
-          <div>
-            <span class="lab-card-badge">DevOps Automation</span>
-            <h3 class="lab-card-title">Multi-Stage Delivery Pipeline</h3>
-            <div class="lab-card-sub">GitHub Actions & Kubernetes Automation</div>
-            <p class="lab-card-desc">
-              Automated build harness integrating git trigger webhooks, containerized build runners, Docker image security scanning, and automated deployment rollout manifests.
-            </p>
-          </div>
-          <div class="lab-card-footer">
-            <span class="lab-card-status"><span class="status-pulse-dot"></span> Documented</span>
-            <span class="tech-tag" style="padding:0.15rem 0.4rem;font-size:0.68rem;">K8s · Docker · CI/CD</span>
-          </div>
-        </div>
-
-        <!-- Lab 3: Serverless Microservices -->
-        <div class="lab-card">
-          <div>
-            <span class="lab-card-badge">Serverless APIs</span>
-            <h3 class="lab-card-title">Event-Driven Python Handlers</h3>
-            <div class="lab-card-sub">AWS Lambda & API Gateway Patterns</div>
-            <p class="lab-card-desc">
-              High-throughput, minimal cold-start Python event handlers integrated with Amazon API Gateway and DynamoDB, optimizing memory allocation and execution duration.
-            </p>
-          </div>
-          <div class="lab-card-footer">
-            <span class="lab-card-status"><span class="status-pulse-dot"></span> Operational</span>
-            <span class="tech-tag" style="padding:0.15rem 0.4rem;font-size:0.68rem;">Python · Lambda · NoSQL</span>
-          </div>
-        </div>
-
-        <!-- Lab 4: Observability & Reliability -->
-        <div class="lab-card">
-          <div>
-            <span class="lab-card-badge">Observability</span>
-            <h3 class="lab-card-title">CloudWatch Synthetic Telemetry</h3>
-            <div class="lab-card-sub">Monitoring & Health Probes</div>
-            <p class="lab-card-desc">
-              Automated availability monitors, synthetic endpoint heartbeat probes, and metric alarm triggers delivering proactive operational awareness for distributed services.
-            </p>
-          </div>
-          <div class="lab-card-footer">
-            <span class="lab-card-status"><span class="status-pulse-dot"></span> Framework</span>
-            <span class="tech-tag" style="padding:0.15rem 0.4rem;font-size:0.68rem;">CloudWatch · Alarms</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
 
     <hr class="section-divider">
 

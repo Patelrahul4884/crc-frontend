@@ -159,53 +159,60 @@
   // ═══════════════════════════════════════════
 
   const archNodesData = {
+    'visitor': {
+      title: 'Visitor (Client Browser)',
+      badge: 'Client Origin & HTTPS Request',
+      purpose: 'The end-user web browser initiating secure HTTPS requests to the portfolio domain.',
+      why: 'Fetches static assets over TLS 1.3 from CloudFront edge PoPs and asynchronously executes background fetch() requests to the API Gateway telemetry endpoint to register visits.',
+      specs: 'Protocol: HTTPS (TLS 1.3) | HTTP Version: HTTP/2 & HTTP/3 | Asynchronous Telemetry: Modern Fetch API'
+    },
     'route53': {
       title: 'Amazon Route 53',
       badge: 'DNS & Edge Routing',
-      purpose: 'Highly available, low-latency authoritative Domain Name System (DNS) service.',
-      why: 'Provides global Anycast DNS routing with native Alias records mapping directly to CloudFront distributions without CNAME flattening issues or extra query hops.',
+      purpose: 'Authoritative Domain Name System (DNS) service with global Anycast routing.',
+      why: 'Provides global Anycast DNS routing with native Alias records mapping directly to the CloudFront distribution without CNAME flattening issues or extra query hops.',
       specs: 'Hosted Zone: Public | Record: Alias A to CloudFront distribution | Health Check & Latency Routing supported'
     },
     'cloudfront': {
       title: 'Amazon CloudFront',
       badge: 'Global CDN & TLS Termination',
-      purpose: 'Global content delivery network caching static assets at 400+ edge Points of Presence.',
-      why: 'Eliminates public internet latency to S3, enforces TLS 1.3 encryption with ACM SSL certificates, reduces bandwidth transfer costs, and protects the origin using AWS Shield Standard DDoS mitigation.',
-      specs: 'Origin: S3 via Origin Access Control (OAC) | Protocol: HTTPS Redirect | Cache Policy: Managed-CachingOptimized | Compression: Gzip/Brotli'
+      purpose: 'Global content delivery network caching static assets at edge Points of Presence.',
+      why: 'Provides CDN delivery and HTTPS support while keeping the S3 origin private via Origin Access Control (OAC), reducing origin load and latency to users worldwide with built-in AWS Shield Standard DDoS mitigation.',
+      specs: 'Origin: S3 via Origin Access Control (OAC) | Protocol: HTTPS Redirect | Cache Policy: Managed-CachingOptimized | Compression: Gzip/Brotli | TLS: 1.3'
     },
     's3': {
       title: 'Amazon S3 (Simple Storage Service)',
       badge: 'Object Storage Origin',
       purpose: 'Durable, high-availability object store hosting HTML, CSS, JavaScript, and static assets.',
-      why: 'Provides 99.999999999% (11 9s) data durability with zero server maintenance overhead. Cost-efficient pay-for-storage economics with zero idle compute cost.',
+      why: 'Provides 99.999999999% (11 9s) data durability with zero server maintenance overhead. Cost-efficient pay-for-storage economics avoiding always-on compute infrastructure.',
       specs: 'Public Access: 100% Blocked | Access Policy: Read permission strictly granted to CloudFront OAC principal | Encryption: AES-256 (SSE-S3)'
     },
     'frontend': {
-      title: 'Frontend Client (Single Page App)',
-      badge: 'Presentation Layer',
-      purpose: 'Client-side UI, telemetry metrics visualization, and asynchronous API calls.',
-      why: 'Constructed with lightweight vanilla HTML5, CSS3, and JavaScript for blazing fast load times (<1s), zero heavy runtime bundles, full responsiveness, and accessible screen-reader support.',
-      specs: 'Runtime: Modern Vanilla ES6+ | Telemetry: Asynchronous Fetch API to AWS API Gateway | Visuals: Pure Canvas 2D Starfield'
+      title: 'Static Frontend',
+      badge: 'Client Presentation Layer',
+      purpose: 'Static client presentation layer executed directly in the visitor\'s web browser.',
+      why: 'Constructed with lightweight semantic HTML5, Vanilla CSS, and modern JavaScript for rapid initial paint, zero server-side rendering latency, responsive mobile-first layouts, and accessible screen-reader compliance.',
+      specs: 'Stack: Semantic HTML5, Vanilla CSS3, Modern ES6+ | Hosting: S3 + CloudFront CDN | Telemetry: Fetch API to API Gateway'
     },
     'apigateway': {
       title: 'Amazon API Gateway',
       badge: 'REST API & CORS Gateway',
       purpose: 'Serverless HTTP API entry point managing traffic, CORS headers, and request routing.',
-      why: 'Decouples frontend clients from serverless compute. Handles automated request throttling, SSL termination, and CORS preflight handling with zero server instances to manage.',
+      why: 'Decouples frontend clients from serverless compute. Handles automated request routing, SSL termination, and CORS preflight handling with zero server instances to manage.',
       specs: 'Endpoint: REST API (/prod/countVisitor) | Integration: Lambda Proxy Integration | CORS: Access-Control-Allow-Origin: * | Protocol: HTTPS'
     },
     'lambda': {
       title: 'AWS Lambda',
       badge: 'Serverless Event Compute',
       purpose: 'Event-driven compute executing visitor increment mutation and telemetry logic.',
-      why: 'Scales from zero to thousands of concurrent executions instantaneously without idle capacity charges. Eliminates operating system patching and provisioned infrastructure overhead.',
+      why: 'Serverless execution avoids always-on compute infrastructure and fits the low and variable traffic profile of this portfolio. Automatically scales per request and runs with least-privilege IAM permissions.',
       specs: 'Runtime: Python 3.x | Memory: 128 MB | IAM Role: Least-privilege dynamodb:UpdateItem & dynamodb:GetItem execution policy'
     },
     'dynamodb': {
       title: 'Amazon DynamoDB',
       badge: 'NoSQL Key-Value Store',
       purpose: 'Persistent state storage for real-time visitor metrics and telemetry records.',
-      why: 'Provides single-digit millisecond response times at any scale. Supports atomic numeric updates (ADD visitor_count :val) ensuring concurrency safety and preventing race conditions without database locks.',
+      why: 'Provides single-digit millisecond response times. Supports atomic numeric updates (ADD visitor_count :inc) ensuring concurrency safety and preventing race conditions without database locks.',
       specs: 'Capacity Mode: On-Demand (Pay-Per-Request) | Primary Key: id (String) | Concurrency: Atomic numeric increment expressions'
     },
     'terraform': {
@@ -218,8 +225,8 @@
     'githubactions': {
       title: 'GitHub Actions CI/CD',
       badge: 'Automated Delivery Pipeline',
-      purpose: 'Automated continuous integration, test validation, static asset deployment, and CDN cache invalidation.',
-      why: 'Triggers on every commit pushed to main. Deploys updated frontend assets directly to S3 and automatically issues a CloudFront cache invalidation (/*) to guarantee immediate global updates.',
+      purpose: 'Automated continuous deployment, static asset synchronization, and CDN cache invalidation.',
+      why: 'Triggers on every commit pushed to main. Deploys updated frontend assets directly to S3 and automatically issues a CloudFront cache invalidation (/*) to guarantee global updates with zero manual steps.',
       specs: 'Repository: Patelrahul4884/crc-frontend | Steps: Checkout -> Configure AWS Credentials -> S3 Sync -> CloudFront Invalidation'
     }
   };
