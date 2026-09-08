@@ -163,7 +163,7 @@
       title: 'Visitor (Client Browser)',
       badge: 'Client Origin & HTTPS Request',
       purpose: 'The end-user web browser initiating secure HTTPS requests to the portfolio domain.',
-      why: 'Fetches static assets over TLS 1.3 from CloudFront edge PoPs and asynchronously executes background fetch() requests to the API Gateway telemetry endpoint to register visits.',
+      why: 'Fetches static assets over TLS 1.3 from CloudFront edge locations and asynchronously executes background fetch() requests to the API Gateway endpoint to register visits.',
       specs: 'Protocol: HTTPS (TLS 1.3) | HTTP Version: HTTP/2 & HTTP/3 | Asynchronous Telemetry: Modern Fetch API'
     },
     'route53': {
@@ -176,22 +176,22 @@
     'cloudfront': {
       title: 'Amazon CloudFront',
       badge: 'Global CDN & TLS Termination',
-      purpose: 'Global content delivery network caching static assets at edge Points of Presence.',
-      why: 'Provides CDN delivery and HTTPS support while keeping the S3 origin private via Origin Access Control (OAC), reducing origin load and latency to users worldwide with built-in AWS Shield Standard DDoS mitigation.',
+      purpose: 'Global content delivery network caching static assets at edge locations.',
+      why: 'CloudFront distributes cached content through edge locations, reducing the distance between users and the origin, while keeping the S3 origin private via Origin Access Control (OAC) with built-in AWS Shield Standard DDoS mitigation.',
       specs: 'Origin: S3 via Origin Access Control (OAC) | Protocol: HTTPS Redirect | Cache Policy: Managed-CachingOptimized | Compression: Gzip/Brotli | TLS: 1.3'
     },
     's3': {
       title: 'Amazon S3 (Simple Storage Service)',
       badge: 'Object Storage Origin',
       purpose: 'Durable, high-availability object store hosting HTML, CSS, JavaScript, and static assets.',
-      why: 'Provides 99.999999999% (11 9s) data durability with zero server maintenance overhead. Cost-efficient pay-for-storage economics avoiding always-on compute infrastructure.',
-      specs: 'Public Access: 100% Blocked | Access Policy: Read permission strictly granted to CloudFront OAC principal | Encryption: AES-256 (SSE-S3)'
+      why: 'Provides high data durability with zero server maintenance overhead. Cost-effective pay-for-storage economics avoiding always-on compute infrastructure.',
+      specs: 'Public Access: Blocked | Access Policy: Read permission strictly granted to CloudFront OAC principal | Encryption: AES-256 (SSE-S3)'
     },
     'frontend': {
       title: 'Static Frontend',
       badge: 'Client Presentation Layer',
       purpose: 'Static client presentation layer executed directly in the visitor\'s web browser.',
-      why: 'Constructed with lightweight semantic HTML5, Vanilla CSS, and modern JavaScript for rapid initial paint, zero server-side rendering latency, responsive mobile-first layouts, and accessible screen-reader compliance.',
+      why: 'Constructed with lightweight semantic HTML5, Vanilla CSS, and modern JavaScript for rapid initial paint, no server-side rendering overhead, responsive mobile-first layouts, and accessible screen-reader compliance.',
       specs: 'Stack: Semantic HTML5, Vanilla CSS3, Modern ES6+ | Hosting: S3 + CloudFront CDN | Telemetry: Fetch API to API Gateway'
     },
     'apigateway': {
@@ -212,7 +212,7 @@
       title: 'Amazon DynamoDB',
       badge: 'NoSQL Key-Value Store',
       purpose: 'Persistent state storage for real-time visitor metrics and telemetry records.',
-      why: 'Provides single-digit millisecond response times. Supports atomic numeric updates (ADD visitor_count :inc) ensuring concurrency safety and preventing race conditions without database locks.',
+      why: 'Provides fast read and write response times. Supports atomic numeric updates (ADD visitor_count :inc) ensuring concurrency safety and preventing race conditions without database locks.',
       specs: 'Capacity Mode: On-Demand (Pay-Per-Request) | Primary Key: id (String) | Concurrency: Atomic numeric increment expressions'
     },
     'terraform': {

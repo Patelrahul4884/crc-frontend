@@ -161,58 +161,53 @@
     <!-- ═══════════ SYSTEM ARCHITECTURE ═══════════ -->
     <section class="section" id="system">
       <div class="section-header reveal">
-        <div class="section-label">Production Telemetry</div>
+        <div class="section-label">System Overview</div>
         <h2 class="section-title">System Architecture</h2>
         <p class="section-subtitle" style="color: var(--cyan-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; margin-top: 0.5rem;">
           "You're currently looking at a website running on AWS."
         </p>
       </div>
 
-      <!-- Live Telemetry Status Bar -->
+      <!-- System Overview Status Bar -->
       <div class="system-status-container reveal">
         <div class="system-status-grid">
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Website Status</span>
-              <span class="status-pulse-dot"></span>
+              <span class="status-module-label">Frontend Hosting</span>
             </div>
-            <div class="status-module-value text-green">ONLINE</div>
-            <div class="status-module-sub">Edge Cache Active</div>
+            <div class="status-module-value text-cyan">S3 + CloudFront</div>
+            <div class="status-module-sub">Static Asset Delivery</div>
           </div>
 
           <div class="status-module-card">
             <div class="status-module-header">
               <span class="status-module-label">API Gateway</span>
-              <span class="status-pulse-dot"></span>
             </div>
-            <div class="status-module-value text-green">ONLINE</div>
-            <div class="status-module-sub">REST /countVisitor</div>
+            <div class="status-module-value text-cyan">REST Endpoint</div>
+            <div class="status-module-sub">/countVisitor Proxy</div>
           </div>
 
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Visitor DB</span>
-              <span class="status-pulse-dot"></span>
+              <span class="status-module-label">Visitor Database</span>
             </div>
-            <div class="status-module-value text-green">ONLINE</div>
-            <div class="status-module-sub">DynamoDB Atomic</div>
+            <div class="status-module-value text-cyan">DynamoDB</div>
+            <div class="status-module-sub">Atomic State Store</div>
           </div>
 
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Global CDN</span>
-              <span class="status-pulse-dot cyan"></span>
+              <span class="status-module-label">Edge Network</span>
             </div>
-            <div class="status-module-value text-cyan">ACTIVE</div>
-            <div class="status-module-sub">CloudFront PoPs</div>
+            <div class="status-module-value text-cyan">CloudFront</div>
+            <div class="status-module-sub">Global Edge Distribution</div>
           </div>
 
           <div class="status-module-card">
             <div class="status-module-header">
               <span class="status-module-label">Infrastructure</span>
-              <span class="status-pulse-dot cyan"></span>
             </div>
-            <div class="status-module-value text-cyan">TERRAFORM</div>
+            <div class="status-module-value text-cyan">Terraform</div>
             <div class="status-module-sub">Declarative IaC</div>
           </div>
 
@@ -222,7 +217,7 @@
               <span class="status-pulse-dot"></span>
             </div>
             <div class="status-module-value text-cyan visitors-sync">—</div>
-            <div class="status-module-sub">Real API Telemetry</div>
+            <div class="status-module-sub">Visitor Telemetry</div>
           </div>
         </div>
       </div>
@@ -469,7 +464,7 @@
                 <i class="fa fa-cogs"></i> Engineering Rationale (Why Chosen)
               </div>
               <div class="arch-inspector-text" id="inspector-why">
-                Provides CDN delivery and HTTPS support while keeping the S3 origin private via Origin Access Control (OAC), reducing origin load and latency to users worldwide with built-in AWS Shield Standard DDoS mitigation.
+                CloudFront distributes cached content through edge locations, reducing the distance between users and the origin, while keeping the S3 origin private via Origin Access Control (OAC) with built-in AWS Shield Standard DDoS mitigation.
               </div>
             </div>
 
@@ -512,7 +507,7 @@
               <i class="fa fa-exchange"></i> Alternatives Considered
             </div>
             <p class="decision-text">
-              Single EC2 instance (t4g.nano) or ECS Fargate container. Rejected due to minimum fixed idle costs (~$5-$30/month), required OS maintenance, and continuous idle CPU waste.
+              Single EC2 instance (t4g.nano) or ECS Fargate container. Rejected due to fixed ongoing compute costs regardless of traffic, required OS maintenance, and continuous idle capacity.
             </p>
           </div>
           <div class="decision-section">
@@ -520,7 +515,7 @@
               <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
             </div>
             <p class="decision-text">
-              Cold start latency (~150-250ms). Mitigated by keeping Python execution payload minimal and avoiding heavy external library imports.
+              Cold starts can introduce additional latency. The Lambda function is kept lightweight to reduce unnecessary execution overhead.
             </p>
           </div>
         </div>
@@ -538,7 +533,7 @@
               <i class="fa fa-check-circle"></i> Chosen Because
             </div>
             <p class="decision-text">
-              Allows the S3 origin bucket to be 100% private via Origin Access Control (OAC). Terminates TLS 1.3 at global edge locations and distributes cached content through edge locations, reducing the distance between users and the content origin, with built-in AWS Shield Standard DDoS mitigation.
+              Keeps the S3 origin bucket private via Origin Access Control (OAC). Terminates TLS 1.3 at edge locations and distributes cached content through edge locations, reducing the distance between users and the origin, with built-in AWS Shield Standard DDoS mitigation.
             </p>
           </div>
           <div class="decision-section">
@@ -614,7 +609,7 @@
               <i class="fa fa-exchange"></i> Alternatives Considered
             </div>
             <p class="decision-text">
-              Amazon RDS (PostgreSQL/MySQL). Rejected because relational databases require VPC subnets (slowing down Lambda execution), connection pooling management, and expensive minimum monthly compute charges.
+              Amazon RDS (PostgreSQL/MySQL). Rejected because relational databases require VPC networking, connection pooling management, and ongoing minimum compute charges.
             </p>
           </div>
           <div class="decision-section">
@@ -1129,7 +1124,7 @@
                   <tr>
                     <td><strong>CloudFront</strong></td>
                     <td>Edge CDN & Security</td>
-                    <td>Global PoP caching, Origin Access Control (OAC) to keep S3 private, TLS 1.3 termination.</td>
+                    <td>Edge caching, Origin Access Control (OAC) to keep S3 private, TLS 1.3 termination.</td>
                   </tr>
                   <tr>
                     <td><strong>Amazon S3</strong></td>
@@ -1219,7 +1214,7 @@ visitor_count = int(response['Attributes']['visitor_count'])
               <li class="case-lesson-item">
                 <div class="case-lesson-title">4. Edge Cache Invalidation Lifecycle</div>
                 <p class="case-text" style="margin-bottom:0;">
-                  Without automated cache invalidation, browsers continue receiving stale cached versions until edge TTL expires. Automating invalidations in the GitHub Actions workflow ensures zero propagation delay for production updates.
+                  Without automated cache invalidation, browsers continue receiving stale cached versions until edge TTL expires. Automating invalidations in the GitHub Actions workflow ensures rapid distribution of production updates.
                 </p>
               </li>
             </ul>
