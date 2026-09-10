@@ -164,7 +164,7 @@
       badge: 'Client Origin & HTTPS Request',
       purpose: 'The end-user web browser initiating secure HTTPS requests to the portfolio domain.',
       why: 'Fetches static assets over TLS 1.3 from CloudFront edge locations and asynchronously executes background fetch() requests to the API Gateway endpoint to register visits.',
-      specs: 'Protocol: HTTPS (TLS 1.3) | HTTP Version: HTTP/2 & HTTP/3 | Asynchronous Telemetry: Modern Fetch API'
+      specs: 'Protocol: HTTPS (TLS 1.3) | HTTP Version: HTTP/2 & HTTP/3 | Asynchronous Request: Modern Fetch API'
     },
     'route53': {
       title: 'Amazon Route 53',
@@ -183,8 +183,8 @@
     's3': {
       title: 'Amazon S3 (Simple Storage Service)',
       badge: 'Object Storage Origin',
-      purpose: 'Durable, high-availability object store hosting HTML, CSS, JavaScript, and static assets.',
-      why: 'Provides high data durability with zero server maintenance overhead. Cost-effective pay-for-storage economics avoiding always-on compute infrastructure.',
+      purpose: 'Managed object store hosting HTML, CSS, JavaScript, and static assets.',
+      why: 'Provides high data durability without operating system or server maintenance overhead. Cost-effective pay-for-storage model avoiding always-on compute infrastructure.',
       specs: 'Public Access: Blocked | Access Policy: Read permission strictly granted to CloudFront OAC principal | Encryption: AES-256 (SSE-S3)'
     },
     'frontend': {
@@ -192,27 +192,27 @@
       badge: 'Client Presentation Layer',
       purpose: 'Static client presentation layer executed directly in the visitor\'s web browser.',
       why: 'Constructed with lightweight semantic HTML5, Vanilla CSS, and modern JavaScript for rapid initial paint, no server-side rendering overhead, responsive mobile-first layouts, and accessible screen-reader compliance.',
-      specs: 'Stack: Semantic HTML5, Vanilla CSS3, Modern ES6+ | Hosting: S3 + CloudFront CDN | Telemetry: Fetch API to API Gateway'
+      specs: 'Stack: Semantic HTML5, Vanilla CSS3, Modern ES6+ | Hosting: S3 + CloudFront CDN | Visitor API: Fetch API to API Gateway'
     },
     'apigateway': {
       title: 'Amazon API Gateway',
       badge: 'REST API & CORS Gateway',
       purpose: 'Serverless HTTP API entry point managing traffic, CORS headers, and request routing.',
-      why: 'Decouples frontend clients from serverless compute. Handles automated request routing, SSL termination, and CORS preflight handling with zero server instances to manage.',
+      why: 'Decouples frontend clients from serverless compute. Handles automated request routing, SSL termination, and CORS preflight handling without provisioning or managing server instances.',
       specs: 'Endpoint: REST API (/prod/countVisitor) | Integration: Lambda Proxy Integration | CORS: Access-Control-Allow-Origin: * | Protocol: HTTPS'
     },
     'lambda': {
       title: 'AWS Lambda',
       badge: 'Serverless Event Compute',
-      purpose: 'Event-driven compute executing visitor increment mutation and telemetry logic.',
+      purpose: 'Event-driven compute executing visitor increment mutation and counter logic.',
       why: 'Serverless execution avoids always-on compute infrastructure and fits the low and variable traffic profile of this portfolio. Automatically scales per request and runs with least-privilege IAM permissions.',
       specs: 'Runtime: Python 3.x | Memory: 128 MB | IAM Role: Least-privilege dynamodb:UpdateItem & dynamodb:GetItem execution policy'
     },
     'dynamodb': {
       title: 'Amazon DynamoDB',
       badge: 'NoSQL Key-Value Store',
-      purpose: 'Persistent state storage for real-time visitor metrics and telemetry records.',
-      why: 'Provides fast read and write response times. Supports atomic numeric updates (ADD visitor_count :inc) ensuring concurrency safety and preventing race conditions without database locks.',
+      purpose: 'Persistent state storage for visitor counter records.',
+      why: 'Provides predictable read and write performance. Supports atomic numeric updates (ADD visitor_count :inc) to handle concurrent visits without external locking mechanisms.',
       specs: 'Capacity Mode: On-Demand (Pay-Per-Request) | Primary Key: id (String) | Concurrency: Atomic numeric increment expressions'
     },
     'terraform': {
@@ -226,7 +226,7 @@
       title: 'GitHub Actions CI/CD',
       badge: 'Automated Delivery Pipeline',
       purpose: 'Automated continuous deployment, static asset synchronization, and CDN cache invalidation.',
-      why: 'Triggers on every commit pushed to main. Deploys updated frontend assets directly to S3 and automatically issues a CloudFront cache invalidation (/*) to guarantee global updates with zero manual steps.',
+      why: 'Triggers on every commit pushed to main. Deploys updated frontend assets directly to S3 and triggers CloudFront cache invalidation (/*) to reduce stale-cache time as part of deployment.',
       specs: 'Repository: Patelrahul4884/crc-frontend | Steps: Checkout -> Configure AWS Credentials -> S3 Sync -> CloudFront Invalidation'
     }
   };
@@ -411,7 +411,7 @@
   }
 
   // ═══════════════════════════════════════════
-  // VISITOR TELEMETRY SYNC
+  // VISITOR COUNTER SYNC
   // ═══════════════════════════════════════════
 
   function syncVisitorCount() {

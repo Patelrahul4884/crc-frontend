@@ -87,7 +87,7 @@
       </div>
 
       <div class="hero-telemetry reveal reveal-delay-4">
-        <span class="telemetry-label">Visitor Telemetry</span>
+        <span class="telemetry-label">Visitor Counter</span>
         <span class="telemetry-value" id="visitors">—</span>
       </div>
 
@@ -173,18 +173,18 @@
         <div class="system-status-grid">
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Frontend Hosting</span>
+              <span class="status-module-label">Website Delivery</span>
             </div>
-            <div class="status-module-value text-cyan">S3 + CloudFront</div>
+            <div class="status-module-value text-cyan">CloudFront + S3</div>
             <div class="status-module-sub">Static Asset Delivery</div>
           </div>
 
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">API Gateway</span>
+              <span class="status-module-label">Visitor Counter</span>
             </div>
-            <div class="status-module-value text-cyan">REST Endpoint</div>
-            <div class="status-module-sub">/countVisitor Proxy</div>
+            <div class="status-module-value text-cyan">API Gateway + Lambda</div>
+            <div class="status-module-sub">REST Endpoint & Compute</div>
           </div>
 
           <div class="status-module-card">
@@ -197,10 +197,10 @@
 
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Edge Network</span>
+              <span class="status-module-label">Delivery</span>
             </div>
-            <div class="status-module-value text-cyan">CloudFront</div>
-            <div class="status-module-sub">Global Edge Distribution</div>
+            <div class="status-module-value text-cyan">GitHub Actions</div>
+            <div class="status-module-sub">Automated CI/CD Pipeline</div>
           </div>
 
           <div class="status-module-card">
@@ -213,11 +213,11 @@
 
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Visitor Telemetry</span>
+              <span class="status-module-label">Visitor Counter</span>
               <span class="status-pulse-dot"></span>
             </div>
             <div class="status-module-value text-cyan visitors-sync">—</div>
-            <div class="status-module-sub">Visitor Telemetry</div>
+            <div class="status-module-sub">API-backed</div>
           </div>
         </div>
       </div>
@@ -226,9 +226,9 @@
       <div class="arch-diagram-wrapper reveal reveal-delay-1">
         <div class="arch-header">
           <div>
-            <div class="arch-header-title">Mission Architecture & Request Flows</div>
+            <div class="arch-header-title">System Architecture & Request Flows</div>
             <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
-              End-to-end cloud infrastructure powering this domain and visitor telemetry.
+              Architecture of the AWS services powering this website and visitor counter.
             </div>
           </div>
           <div class="arch-header-hint">
@@ -326,19 +326,19 @@
           </div>
         </div>
 
-        <!-- Visitor Counter Flow 02: Serverless State & Telemetry -->
+        <!-- Visitor Counter Flow 02: Serverless State & Visitor Counter -->
         <div class="arch-pipeline-container">
           <div class="arch-pipeline-header">
-            <span class="arch-pipeline-tag purple">Flow 02 · Visitor Telemetry</span>
+            <span class="arch-pipeline-tag purple">Flow 02 · Visitor Counter</span>
             <span class="arch-pipeline-desc">Visitor → API Gateway → AWS Lambda → DynamoDB</span>
           </div>
 
-          <div class="arch-flow flow-horizontal" role="tablist" aria-label="Visitor Telemetry Pipeline">
+          <div class="arch-flow flow-horizontal" role="tablist" aria-label="Visitor Counter Pipeline">
             
             <button class="arch-node purple" data-node="visitor" role="tab" aria-selected="false" tabindex="0">
               <div class="arch-node-type">Client Fetch</div>
               <div class="arch-node-name">Visitor</div>
-              <div class="arch-node-sub">Async Telemetry</div>
+              <div class="arch-node-sub">Async Counter</div>
             </button>
 
             <div class="arch-connector purple" aria-hidden="true">
@@ -507,7 +507,7 @@
               <i class="fa fa-exchange"></i> Alternatives Considered
             </div>
             <p class="decision-text">
-              Single EC2 instance (t4g.nano) or ECS Fargate container. Rejected due to fixed ongoing compute costs regardless of traffic, required OS maintenance, and continuous idle capacity.
+              Single EC2 instance or ECS Fargate container. Always-on compute introduces ongoing infrastructure management and idle resource costs, which are unnecessary for the low and variable traffic profile of this portfolio.
             </p>
           </div>
           <div class="decision-section">
@@ -515,7 +515,7 @@
               <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
             </div>
             <p class="decision-text">
-              Cold starts can introduce additional latency. The Lambda function is kept lightweight to reduce unnecessary execution overhead.
+              Serverless introduces cold-start considerations. The Lambda function is intentionally kept lightweight with a minimal Python execution path.
             </p>
           </div>
         </div>
@@ -549,7 +549,7 @@
               <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
             </div>
             <p class="decision-text">
-              Cached content propagation delay on updates. Mitigated by automated CI/CD cache invalidation (`/*`) via GitHub Actions upon deployment.
+              Cached content propagation delay on updates. Mitigated by automated CI/CD cache invalidation (`/*`) via GitHub Actions, which reduces stale-cache time by triggering CloudFront invalidation as part of deployment.
             </p>
           </div>
         </div>
@@ -601,7 +601,7 @@
               <i class="fa fa-check-circle"></i> Chosen Because
             </div>
             <p class="decision-text">
-              Supports atomic counter updates (`UpdateItem` with `ADD visitor_count :inc`), guaranteeing concurrency safety when visitors browse concurrently without requiring application-level mutexes or database locks.
+              Supports atomic counter updates (`UpdateItem` with `ADD visitor_count :inc`), handling concurrent requests without requiring application-level mutexes or external database locks.
             </p>
           </div>
           <div class="decision-section">
@@ -617,7 +617,7 @@
               <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
             </div>
             <p class="decision-text">
-              Limited query capability compared to SQL. Completely acceptable since the telemetry schema requires only fast single-key lookups and atomic updates.
+              Limited query capability compared to SQL, but well-suited since the visitor counter data model requires only single-key lookups and atomic updates.
             </p>
           </div>
         </div>
@@ -635,7 +635,7 @@
               <i class="fa fa-check-circle"></i> Chosen Because
             </div>
             <p class="decision-text">
-              Seamless native repository integration with zero self-hosted infrastructure. Automatically syncs frontend builds to S3 and triggers CloudFront cache invalidation upon push to `main`.
+              Seamless native repository integration without requiring self-hosted infrastructure. Automatically syncs frontend builds to S3 and triggers CloudFront cache invalidation upon push to `main`.
             </p>
           </div>
           <div class="decision-section">
@@ -680,7 +680,7 @@
             <span class="project-status active" style="margin:0;">Operational · Live Production</span>
           </div>
           <p>
-            Architected and deployed a production serverless web application and real-time visitor telemetry platform on Amazon Web Services. Entire infrastructure provisioned declaratively via Terraform, featuring global edge CDN distribution with CloudFront, private S3 storage via Origin Access Control, serverless Python Lambda compute, and continuous deployment through GitHub Actions.
+            Architected and deployed a production serverless web application and visitor counter on Amazon Web Services. Infrastructure provisioned declaratively via Terraform, featuring edge CDN distribution with CloudFront, private S3 storage via Origin Access Control, serverless Python Lambda compute, and continuous deployment through GitHub Actions.
           </p>
           <div class="project-stack">
             <span class="tech-tag">AWS S3</span>
@@ -1083,7 +1083,7 @@
           <div class="case-section">
             <h3 class="case-section-title">Project Overview</h3>
             <p class="case-text">
-              The Cloud Resume Challenge is a hands-on, multi-discipline cloud engineering project designed to demonstrate mastery across full-stack cloud computing on Amazon Web Services (AWS). Rather than building a typical static resume, this project requires architecting a production-grade, highly available, secure web application with global edge delivery, serverless APIs, persistent state tracking, infrastructure as code, and continuous deployment pipelines.
+              The Cloud Resume Challenge is a hands-on, multi-discipline cloud engineering project designed to demonstrate mastery across full-stack cloud computing on Amazon Web Services (AWS). Rather than building a typical static resume, this project requires architecting a production AWS web application demonstrating serverless architecture, infrastructure as code, secure origin access, and automated delivery.
             </p>
             <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.5rem;">
               <a href="https://github.com/Patelrahul4884/crc-frontend" target="_blank" rel="noopener noreferrer" class="btn-outline">GitHub: crc-frontend ↗</a>
@@ -1098,8 +1098,8 @@
               The architecture is intentionally segregated into two decoupled tiers:
             </p>
             <ul class="mission-details">
-              <li><strong>Static Presentation Tier:</strong> Amazon S3 bucket with all public access blocked, fronted by Amazon CloudFront with Origin Access Control (OAC), TLS 1.3 encryption via AWS Certificate Manager (ACM), and custom DNS resolution managed by Amazon Route 53.</li>
-              <li><strong>Serverless Telemetry Tier:</strong> Single-page JavaScript client initiates asynchronous GET requests to Amazon API Gateway, which invokes an AWS Lambda function running Python to perform an atomic increment and read operation against an Amazon DynamoDB table.</li>
+              <li><strong>Static Presentation Tier:</strong> Amazon S3 bucket with all public access blocked, fronted by Amazon CloudFront with Origin Access Control (OAC), HTTPS/TLS termination at CloudFront using a certificate managed through AWS Certificate Manager (ACM), and custom DNS resolution managed by Amazon Route 53.</li>
+              <li><strong>Serverless Application Tier:</strong> Single-page JavaScript client initiates asynchronous GET requests to Amazon API Gateway, which invokes an AWS Lambda function running Python to perform an atomic increment and read operation against an Amazon DynamoDB table.</li>
             </ul>
           </div>
 
@@ -1144,7 +1144,7 @@
                   <tr>
                     <td><strong>DynamoDB</strong></td>
                     <td>NoSQL Key-Value Store</td>
-                    <td>On-Demand capacity billing, atomic update expressions to guarantee race-condition safety.</td>
+                    <td>On-Demand capacity billing, atomic update expressions to handle concurrent writes safely without external locking.</td>
                   </tr>
                   <tr>
                     <td><strong>AWS IAM</strong></td>
@@ -1173,7 +1173,7 @@ response = table.update_item(
 visitor_count = int(response['Attributes']['visitor_count'])
             </div>
             <p class="case-text">
-              Using Terraform eliminates manual ClickOps in the AWS console, guarantees that configuration drift is immediately visible via <code>terraform plan</code>, and ensures reproducible deployments across development and production environments.
+              Using Terraform eliminates manual ClickOps in the AWS console, makes infrastructure configuration version-controlled and allows configuration differences to be reviewed through <code>terraform plan</code>, and ensures reproducible deployments across development and production environments.
             </p>
           </div>
 
@@ -1184,7 +1184,7 @@ visitor_count = int(response['Attributes']['visitor_count'])
               Continuous integration and deployment is managed via GitHub Actions:
             </p>
             <ul class="mission-details">
-              <li><strong>Frontend Pipeline:</strong> On push to <code>main</code> branch, GitHub Actions executes validation, synchronizes static HTML/CSS/JS assets to the S3 bucket using <code>aws s3 sync</code>, and issues an immediate CloudFront cache invalidation (<code>aws cloudfront create-invalidation --distribution-id ... --paths "/*"</code>).</li>
+              <li><strong>Frontend Pipeline:</strong> On push to <code>main</code> branch, GitHub Actions executes validation, synchronizes static HTML/CSS/JS assets to the S3 bucket using <code>aws s3 sync</code>, and triggers CloudFront cache invalidation (<code>aws cloudfront create-invalidation --distribution-id ... --paths "/*"</code>) to reduce stale-cache time as part of deployment.</li>
               <li><strong>Backend Pipeline:</strong> Validates Lambda Python code, runs test assertions, and packages and deploys the function update.</li>
             </ul>
           </div>
@@ -1202,7 +1202,7 @@ visitor_count = int(response['Attributes']['visitor_count'])
               <li class="case-lesson-item">
                 <div class="case-lesson-title">2. Origin Access Control (OAC) Migration</div>
                 <p class="case-text" style="margin-bottom:0;">
-                  Legacy CloudFront setups relied on Origin Access Identity (OAI). Implementing the modernized Origin Access Control (OAC) provides stronger cryptographic signing (SigV4), SSE-KMS support, and guarantees that S3 bucket policies completely block direct public access.
+                  Legacy CloudFront setups relied on Origin Access Identity (OAI). Implementing the modernized Origin Access Control (OAC) provides stronger cryptographic signing (SigV4), SSE-KMS support, and configures S3 bucket policies to restrict direct public access to CloudFront requests.
                 </p>
               </li>
               <li class="case-lesson-item">
@@ -1214,7 +1214,7 @@ visitor_count = int(response['Attributes']['visitor_count'])
               <li class="case-lesson-item">
                 <div class="case-lesson-title">4. Edge Cache Invalidation Lifecycle</div>
                 <p class="case-text" style="margin-bottom:0;">
-                  Without automated cache invalidation, browsers continue receiving stale cached versions until edge TTL expires. Automating invalidations in the GitHub Actions workflow ensures rapid distribution of production updates.
+                  Without automated cache invalidation, browsers continue receiving stale cached versions until edge TTL expires. Automating invalidations in the GitHub Actions workflow reduces stale-cache time by clearing edge caches upon deployment.
                 </p>
               </li>
             </ul>
