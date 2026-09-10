@@ -58,7 +58,7 @@
     <section class="hero" id="hero">
       <div class="hero-status reveal">
         <span class="status-dot"></span>
-        <span>Production System Online</span>
+        <span>AWS SYSTEM · LIVE DEPLOYMENT</span>
       </div>
 
       <h1 class="hero-name reveal reveal-delay-1">
@@ -181,7 +181,7 @@
 
           <div class="status-module-card">
             <div class="status-module-header">
-              <span class="status-module-label">Visitor Counter</span>
+              <span class="status-module-label">Visitor Counter API</span>
             </div>
             <div class="status-module-value text-cyan">API Gateway + Lambda</div>
             <div class="status-module-sub">REST Endpoint & Compute</div>
@@ -226,7 +226,7 @@
       <div class="arch-diagram-wrapper reveal reveal-delay-1">
         <div class="arch-header">
           <div>
-            <div class="arch-header-title">System Architecture & Request Flows</div>
+            <div class="arch-header-title">Mission Architecture & Request Flows</div>
             <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
               Architecture of the AWS services powering this website and visitor counter.
             </div>
@@ -1083,7 +1083,7 @@
           <div class="case-section">
             <h3 class="case-section-title">Project Overview</h3>
             <p class="case-text">
-              The Cloud Resume Challenge is a hands-on, multi-discipline cloud engineering project designed to demonstrate mastery across full-stack cloud computing on Amazon Web Services (AWS). Rather than building a typical static resume, this project requires architecting a production AWS web application demonstrating serverless architecture, infrastructure as code, secure origin access, and automated delivery.
+              The Cloud Resume Challenge is a hands-on, multi-discipline cloud engineering project designed to demonstrate mastery across full-stack cloud computing on Amazon Web Services (AWS). Rather than building a typical static resume, this project requires architecting a production AWS web application demonstrating serverless architecture, infrastructure as code, secure S3 origin access, and automated delivery.
             </p>
             <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.5rem;">
               <a href="https://github.com/Patelrahul4884/crc-frontend" target="_blank" rel="noopener noreferrer" class="btn-outline">GitHub: crc-frontend ↗</a>
@@ -1099,7 +1099,7 @@
             </p>
             <ul class="mission-details">
               <li><strong>Static Presentation Tier:</strong> Amazon S3 bucket with all public access blocked, fronted by Amazon CloudFront with Origin Access Control (OAC), HTTPS/TLS termination at CloudFront using a certificate managed through AWS Certificate Manager (ACM), and custom DNS resolution managed by Amazon Route 53.</li>
-              <li><strong>Serverless Application Tier:</strong> Single-page JavaScript client initiates asynchronous GET requests to Amazon API Gateway, which invokes an AWS Lambda function running Python to perform an atomic increment and read operation against an Amazon DynamoDB table.</li>
+              <li><strong>Serverless Visitor Counter Tier:</strong> Static frontend client initiates asynchronous GET requests to Amazon API Gateway, which invokes an AWS Lambda function running Python to perform an atomic increment and read operation against an Amazon DynamoDB table.</li>
             </ul>
           </div>
 
@@ -1173,7 +1173,7 @@ response = table.update_item(
 visitor_count = int(response['Attributes']['visitor_count'])
             </div>
             <p class="case-text">
-              Using Terraform eliminates manual ClickOps in the AWS console, makes infrastructure configuration version-controlled and allows configuration differences to be reviewed through <code>terraform plan</code>, and ensures reproducible deployments across development and production environments.
+              Using Terraform reduces manual ClickOps and keeps infrastructure configuration version-controlled. Running <code>terraform plan</code> allows infrastructure differences to be reviewed before applying changes and provides a repeatable way to manage the declared resources.
             </p>
           </div>
 
@@ -1202,7 +1202,7 @@ visitor_count = int(response['Attributes']['visitor_count'])
               <li class="case-lesson-item">
                 <div class="case-lesson-title">2. Origin Access Control (OAC) Migration</div>
                 <p class="case-text" style="margin-bottom:0;">
-                  Legacy CloudFront setups relied on Origin Access Identity (OAI). Implementing the modernized Origin Access Control (OAC) provides stronger cryptographic signing (SigV4), SSE-KMS support, and configures S3 bucket policies to restrict direct public access to CloudFront requests.
+                  Legacy CloudFront setups relied on Origin Access Identity (OAI). Implementing the modernized Origin Access Control (OAC) provides stronger cryptographic signing (SigV4), SSE-KMS support, and allows the S3 bucket policy to restrict object access to the CloudFront distribution through Origin Access Control (OAC), keeping the bucket from being publicly readable.
                 </p>
               </li>
               <li class="case-lesson-item">
