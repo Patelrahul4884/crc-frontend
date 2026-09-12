@@ -265,6 +265,80 @@
     }
   });
 
+  // Architecture Path Hover Illumination & Node Dimming
+  $(document).on('mouseenter', '.arch-node', function() {
+    const $node = $(this);
+    const $flow = $node.closest('.arch-flow');
+    if ($flow.length) {
+      $flow.addClass('has-hover');
+      $node.addClass('hovered');
+      // Highlight adjacent connected nodes in same flow
+      const $nodes = $flow.find('.arch-node');
+      const idx = $nodes.index($node);
+      if (idx > 0) $nodes.eq(idx - 1).addClass('connected');
+      if (idx < $nodes.length - 1) $nodes.eq(idx + 1).addClass('connected');
+    }
+  });
+
+  $(document).on('mouseleave', '.arch-node', function() {
+    const $flow = $(this).closest('.arch-flow');
+    if ($flow.length) {
+      $flow.removeClass('has-hover');
+      $flow.find('.arch-node').removeClass('hovered connected');
+    }
+  });
+
+  // ═══════════════════════════════════════════
+  // INTERACTIVE DECISION EXPLORER
+  // ═══════════════════════════════════════════
+
+  function selectDecision(decId) {
+    $('.decision-tab-btn').removeClass('active').attr('aria-selected', 'false');
+    $('.decision-tab-btn[data-decision="' + decId + '"]').addClass('active').attr('aria-selected', 'true');
+
+    $('.decision-panel').removeClass('active');
+    const $targetPanel = $('#dec-panel-' + decId);
+    if ($targetPanel.length) {
+      $targetPanel.addClass('active');
+    }
+  }
+
+  $(document).on('click', '.decision-tab-btn', function() {
+    const decId = $(this).data('decision');
+    selectDecision(decId);
+  });
+
+  $(document).on('keydown', '.decision-tab-btn', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const decId = $(this).data('decision');
+      selectDecision(decId);
+    }
+  });
+
+  // ═══════════════════════════════════════════
+  // ENGINEERING TOOLKIT CATEGORY FILTER
+  // ═══════════════════════════════════════════
+
+  $(document).on('click', '.toolkit-filter-btn', function() {
+    const filter = $(this).data('filter');
+    $('.toolkit-filter-btn').removeClass('active');
+    $(this).addClass('active');
+
+    if (filter === 'all') {
+      $('.skill-panel').removeClass('dimmed highlighted');
+    } else {
+      $('.skill-panel').each(function() {
+        const cat = $(this).data('category');
+        if (cat === filter) {
+          $(this).removeClass('dimmed').addClass('highlighted');
+        } else {
+          $(this).removeClass('highlighted').addClass('dimmed');
+        }
+      });
+    }
+  });
+
   // ═══════════════════════════════════════════
   // TECHNICAL CASE STUDY MODAL
   // ═══════════════════════════════════════════
@@ -415,22 +489,88 @@
   // ═══════════════════════════════════════════
 
   function syncVisitorCount() {
-    const count = $('#visitors').text().trim();
+    const el = document.getElementById('visitors');
+    if (!el) return;
+    const count = el.textContent.trim();
     if (count && count !== '—') {
       $('.visitors-sync').text(count);
     }
   }
 
-  const visitorsEl = document.getElementById('visitors');
-  if (visitorsEl && window.MutationObserver) {
-    const visitorObserver = new MutationObserver(function() {
-      syncVisitorCount();
-    });
-    visitorObserver.observe(visitorsEl, { childList: true, characterData: true, subtree: true });
+  // Observe visitor counter update
+  const visitorTarget = document.getElementById('visitors');
+  if (visitorTarget) {
+    const observer = new MutationObserver(syncVisitorCount);
+    observer.observe(visitorTarget, { childList: true, characterData: true, subtree: true });
+    // Fallback checks
+    setTimeout(syncVisitorCount, 1200);
+    setTimeout(syncVisitorCount, 3000);
   }
 
-  setTimeout(syncVisitorCount, 1500);
-  setTimeout(syncVisitorCount, 3000);
+  // ═══════════════════════════════════════════
+  // DESKTOP CURSOR-AWARE INTERACTIONS
+  // ═══════════════════════════════════════════
+
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (!prefersReducedMotion && isFinePointer) {
+    // 1. Subtle 3D Card Tilt (1-2 degrees max)
+    let tiltRaf;
+    $(document).on('mousemove', '.card-tilt', function(e) {
+      const card = this;
+      if (tiltRaf) cancelAnimationFrame(tiltRaf);
+      tiltRaf = requestAnimationFrame(function() {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const rotateX = (-y * 3).toFixed(2);
+        const rotateY = (x * 3).toFixed(2);
+        card.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-2px)';
+      });
+    });
+
+    $(document).on('mouseleave', '.card-tilt', function() {
+      if (tiltRaf) cancelAnimationFrame(tiltRaf);
+      this.style.transform = '';
+    });
+
+    // 2. Magnetic Button Hover Pull (2-3px)
+    let magRaf;
+    $(document).on('mousemove', '.btn-magnetic', function(e) {
+      const btn = this;
+      if (magRaf) cancelAnimationFrame(magRaf);
+      magRaf = requestAnimationFrame(function() {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = ((e.clientX - cx) * 0.12).toFixed(1);
+        const dy = ((e.clientY - cy) * 0.12).toFixed(1);
+        btn.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+      });
+    });
+
+    $(document).on('mouseleave', '.btn-magnetic', function() {
+      if (magRaf) cancelAnimationFrame(magRaf);
+      this.style.transform = '';
+    });
+
+    // 3. Hero Ambient Engineering Badges Cursor Drift
+    const $ambientNodes = $('.ambient-node');
+    if ($ambientNodes.length) {
+      let ambRaf;
+      window.addEventListener('mousemove', function(e) {
+        if (ambRaf) cancelAnimationFrame(ambRaf);
+        ambRaf = requestAnimationFrame(function() {
+          const normX = (e.clientX / window.innerWidth - 0.5) * 18;
+          const normY = (e.clientY / window.innerHeight - 0.5) * 18;
+          $ambientNodes.each(function(i) {
+            const factor = (i + 1) * 0.35;
+            this.style.transform = 'translate(' + (normX * factor).toFixed(1) + 'px, ' + (normY * factor).toFixed(1) + 'px)';
+          });
+        });
+      }, { passive: true });
+    }
+  }
 
 })(jQuery);
 

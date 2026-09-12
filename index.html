@@ -24,14 +24,16 @@
 
 <body id="page-top">
 
-  <!-- Starfield Canvas -->
+  <!-- Starfield Canvas & Depth Layers -->
   <canvas id="starfield-canvas" aria-hidden="true"></canvas>
+  <div class="grid-pattern-bg" aria-hidden="true"></div>
 
   <!-- Navigation -->
   <nav class="nav-main" id="mainNav" role="navigation" aria-label="Main navigation">
     <a href="#page-top" class="nav-brand js-scroll-trigger" aria-label="Go to top">
       <span class="nav-brand-icon">RP</span>
-      <span>Rahul Patel</span>
+      <span class="nav-brand-text">Rahul Patel</span>
+      <span class="nav-brand-badge">AWS</span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
@@ -41,13 +43,14 @@
     </button>
 
     <ul class="nav-links" id="navLinks" role="list">
-      <li><a href="#about" class="js-scroll-trigger">About</a></li>
-      <li><a href="#system" class="js-scroll-trigger">System</a></li>
-      <li><a href="#projects" class="js-scroll-trigger">Projects</a></li>
-      <li><a href="#experience" class="js-scroll-trigger">Experience</a></li>
-      <li><a href="#skills" class="js-scroll-trigger">Skills</a></li>
-      <li><a href="#certifications" class="js-scroll-trigger">Certifications</a></li>
-      <li><a href="#contact" class="js-scroll-trigger">Contact</a></li>
+      <li><a href="#about" class="js-scroll-trigger"><span class="nav-num">01</span>Profile</a></li>
+      <li><a href="#system" class="js-scroll-trigger"><span class="nav-num">02</span>Architecture</a></li>
+      <li><a href="#decisions" class="js-scroll-trigger"><span class="nav-num">03</span>Decisions</a></li>
+      <li><a href="#projects" class="js-scroll-trigger"><span class="nav-num">04</span>Projects</a></li>
+      <li><a href="#experience" class="js-scroll-trigger"><span class="nav-num">05</span>Journey</a></li>
+      <li><a href="#skills" class="js-scroll-trigger"><span class="nav-num">06</span>Toolkit</a></li>
+      <li><a href="#certifications" class="js-scroll-trigger"><span class="nav-num">07</span>Credentials</a></li>
+      <li><a href="#contact" class="js-scroll-trigger nav-connect-pill">Connect ↗</a></li>
     </ul>
   </nav>
 
@@ -56,23 +59,46 @@
 
     <!-- ═══════════ HERO ═══════════ -->
     <section class="hero" id="hero">
-      <div class="hero-status reveal">
-        <span class="status-dot"></span>
-        <span>AWS SYSTEM · LIVE DEPLOYMENT</span>
+      <!-- Command Center Ambient Engineering Badges -->
+      <div class="hero-ambient-elements" aria-hidden="true">
+        <div class="ambient-node node-1"><span class="node-pulse"></span> aws:lambda::python</div>
+        <div class="ambient-node node-2"><span class="node-pulse"></span> aws:cloudfront::edge</div>
+        <div class="ambient-node node-3"><span class="node-pulse"></span> iac:terraform::state</div>
+        <div class="ambient-node node-4"><span class="node-pulse"></span> nosql:dynamodb::atomic</div>
       </div>
 
+      <!-- Telemetry Strip -->
+      <div class="hero-telemetry-strip reveal">
+        <div class="telemetry-chip">
+          <span class="status-dot"></span>
+          <span class="telemetry-text">AWS SYSTEM · LIVE DEPLOYMENT</span>
+        </div>
+        <div class="telemetry-divider">//</div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">REGION:</span>
+          <span class="telemetry-val">us-east-1</span>
+        </div>
+        <div class="telemetry-divider">//</div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">VISITOR:</span>
+          <span class="telemetry-val-highlight">#<span id="visitors">—</span></span>
+        </div>
+      </div>
+
+      <!-- Confident Dominant Typography -->
       <h1 class="hero-name reveal reveal-delay-1">
-        Rahul<br><span class="name-highlight">Patel</span>
+        <span class="hero-name-line">RAHUL</span>
+        <span class="hero-name-line name-highlight">PATEL</span>
       </h1>
 
       <div class="hero-tags reveal reveal-delay-2">
-        <span>Cloud</span>
+        <span class="hero-tag-item">Cloud</span>
         <span class="tag-sep">•</span>
-        <span>DevOps</span>
+        <span class="hero-tag-item">DevOps</span>
         <span class="tag-sep">•</span>
-        <span>AWS</span>
+        <span class="hero-tag-item">AWS</span>
         <span class="tag-sep">•</span>
-        <span>Automation</span>
+        <span class="hero-tag-item">Automation</span>
       </div>
 
       <p class="hero-intro reveal reveal-delay-2">
@@ -80,15 +106,10 @@
       </p>
 
       <div class="hero-actions reveal reveal-delay-3">
-        <a href="#system" class="btn-primary-glow js-scroll-trigger">⚡ Live Architecture</a>
-        <a href="#projects" class="btn-outline js-scroll-trigger">Engineering Missions</a>
-        <a href="#contact" class="btn-outline js-scroll-trigger">Connect</a>
-        <a href="https://github.com/Patelrahul4884" class="btn-outline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      </div>
-
-      <div class="hero-telemetry reveal reveal-delay-4">
-        <span class="telemetry-label">Visitor Counter</span>
-        <span class="telemetry-value" id="visitors">—</span>
+        <a href="#system" class="btn-primary-glow btn-magnetic js-scroll-trigger">⚡ Live Architecture</a>
+        <a href="#projects" class="btn-outline btn-magnetic js-scroll-trigger">Engineering Missions</a>
+        <a href="#contact" class="btn-outline btn-magnetic js-scroll-trigger">Connect</a>
+        <a href="https://github.com/Patelrahul4884" class="btn-outline btn-magnetic" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow-shift">↗</span></a>
       </div>
 
       <!-- Orbital decoration -->
@@ -104,7 +125,7 @@
     <!-- ═══════════ ABOUT ═══════════ -->
     <section class="section" id="about">
       <div class="section-header reveal">
-        <div class="section-label">Mission Profile</div>
+        <div class="section-label"><span class="section-num">01</span> MISSION PROFILE</div>
         <h2 class="section-title">About Me</h2>
       </div>
 
@@ -126,29 +147,29 @@
         </div>
 
         <div class="meta-cards reveal reveal-delay-1">
-          <div class="meta-card">
+          <div class="meta-card card-tilt">
             <div class="meta-card-label">Location</div>
             <div class="meta-card-value">Pune, India</div>
           </div>
-          <div class="meta-card">
+          <div class="meta-card card-tilt">
             <div class="meta-card-label">Experience</div>
             <div class="meta-card-value">5+ Years</div>
           </div>
-          <div class="meta-card">
+          <div class="meta-card card-tilt">
             <div class="meta-card-label">Primary Cloud</div>
             <div class="meta-card-value">Amazon Web Services</div>
           </div>
-          <div class="meta-card">
+          <div class="meta-card card-tilt">
             <div class="meta-card-label">Core Specialization</div>
             <div class="meta-card-value">Serverless & IaC</div>
           </div>
-          <div class="meta-card">
+          <div class="meta-card card-tilt">
             <div class="meta-card-label">Current Status</div>
             <div class="meta-card-value" style="display:flex;align-items:center;gap:0.4rem;">
               <span class="status-dot"></span> Active
             </div>
           </div>
-          <div class="meta-card">
+          <div class="meta-card card-tilt">
             <div class="meta-card-label">Infrastructure State</div>
             <div class="meta-card-value" style="color:var(--cyan-primary);">Live Production</div>
           </div>
@@ -161,7 +182,7 @@
     <!-- ═══════════ SYSTEM ARCHITECTURE ═══════════ -->
     <section class="section" id="system">
       <div class="section-header reveal">
-        <div class="section-label">System Overview</div>
+        <div class="section-label"><span class="section-num">02</span> SYSTEM ARCHITECTURE</div>
         <h2 class="section-title">System Architecture</h2>
         <p class="section-subtitle" style="color: var(--cyan-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; margin-top: 0.5rem;">
           "You're currently looking at a website running on AWS."
@@ -474,188 +495,276 @@
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Engineering Decisions Sub-section -->
-      <div class="section-header reveal reveal-delay-2 mt-3">
-        <div class="section-label">Engineering Rationale</div>
-        <h3 class="section-title" style="font-size: 1.8rem;">Engineering Decisions</h3>
-        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
+    <hr class="section-divider">
+
+    <!-- ═══════════ ENGINEERING DECISIONS ═══════════ -->
+    <section class="section" id="decisions">
+      <div class="section-header reveal">
+        <div class="section-label"><span class="section-num">03</span> ENGINEERING DECISIONS</div>
+        <h2 class="section-title">Architectural Rationale & Trade-Offs</h2>
+        <p class="section-subtitle" style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
           Architectural justifications, alternatives evaluated, and production trade-offs.
         </p>
       </div>
 
-      <div class="decisions-grid reveal reveal-delay-2">
-        
-        <!-- Decision 1: Serverless -->
-        <div class="decision-card">
-          <div class="decision-card-header">
-            <div>
-              <span class="decision-id">Decision 01</span>
-              <h4 class="decision-title">Why Serverless Architecture?</h4>
+      <!-- Interactive Decision Explorer -->
+      <div class="decision-explorer reveal">
+        <!-- Decision Navigation Tabs (Desktop Left Rail / Mobile Accordion Triggers) -->
+        <div class="decision-nav" role="tablist" aria-label="Engineering Decisions Navigation">
+          
+          <button class="decision-tab-btn active" role="tab" aria-selected="true" aria-controls="dec-panel-1" id="dec-tab-1" data-decision="1">
+            <span class="dec-tab-num">01</span>
+            <div class="dec-tab-meta">
+              <span class="dec-tab-title">Serverless Architecture</span>
+              <span class="dec-tab-sub">AWS Lambda · Event-Driven</span>
             </div>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label chosen">
-              <i class="fa fa-check-circle"></i> Chosen Because
+            <span class="dec-tab-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-2" id="dec-tab-2" data-decision="2">
+            <span class="dec-tab-num">02</span>
+            <div class="dec-tab-meta">
+              <span class="dec-tab-title">CloudFront Edge CDN</span>
+              <span class="dec-tab-sub">Origin Access Control (OAC)</span>
             </div>
-            <p class="decision-text">
-              Serverless services avoid always-on compute infrastructure and fit the low and variable traffic profile of this portfolio. Automatically scales with incoming request volume without provisioning virtual machines or managing operating system patching.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label alt">
-              <i class="fa fa-exchange"></i> Alternatives Considered
+            <span class="dec-tab-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-3" id="dec-tab-3" data-decision="3">
+            <span class="dec-tab-num">03</span>
+            <div class="dec-tab-meta">
+              <span class="dec-tab-title">Declarative Terraform</span>
+              <span class="dec-tab-sub">State-Locked IaC · S3 + DynamoDB</span>
             </div>
-            <p class="decision-text">
-              Single EC2 instance or ECS Fargate container. Always-on compute introduces ongoing infrastructure management and idle resource costs, which are unnecessary for the low and variable traffic profile of this portfolio.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label tradeoff">
-              <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
+            <span class="dec-tab-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-4" id="dec-tab-4" data-decision="4">
+            <span class="dec-tab-num">04</span>
+            <div class="dec-tab-meta">
+              <span class="dec-tab-title">DynamoDB NoSQL</span>
+              <span class="dec-tab-sub">Atomic Numeric Mutations</span>
             </div>
-            <p class="decision-text">
-              Serverless introduces cold-start considerations. The Lambda function is intentionally kept lightweight with a minimal Python execution path.
-            </p>
-          </div>
+            <span class="dec-tab-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-5" id="dec-tab-5" data-decision="5">
+            <span class="dec-tab-num">05</span>
+            <div class="dec-tab-meta">
+              <span class="dec-tab-title">GitHub Actions CI/CD</span>
+              <span class="dec-tab-sub">GitOps Delivery & Cache Invalidation</span>
+            </div>
+            <span class="dec-tab-chevron" aria-hidden="true">›</span>
+          </button>
+
         </div>
 
-        <!-- Decision 2: CloudFront CDN -->
-        <div class="decision-card">
-          <div class="decision-card-header">
-            <div>
-              <span class="decision-id">Decision 02</span>
-              <h4 class="decision-title">Why CloudFront Edge CDN?</h4>
-            </div>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label chosen">
-              <i class="fa fa-check-circle"></i> Chosen Because
-            </div>
-            <p class="decision-text">
-              Keeps the S3 origin bucket private via Origin Access Control (OAC). Terminates TLS 1.3 at edge locations and distributes cached content through edge locations, reducing the distance between users and the origin, with built-in AWS Shield Standard DDoS mitigation.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label alt">
-              <i class="fa fa-exchange"></i> Alternatives Considered
-            </div>
-            <p class="decision-text">
-              Direct S3 Static Website Hosting. Rejected because S3 web endpoints do not support custom domain SSL/TLS certificates natively and require public read bucket access.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label tradeoff">
-              <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
-            </div>
-            <p class="decision-text">
-              Cached content propagation delay on updates. Mitigated by automated CI/CD cache invalidation (`/*`) via GitHub Actions, which reduces stale-cache time by triggering CloudFront invalidation as part of deployment.
-            </p>
-          </div>
-        </div>
+        <!-- Explorer Display Stage -->
+        <div class="decision-panels-stage">
 
-        <!-- Decision 3: Terraform -->
-        <div class="decision-card">
-          <div class="decision-card-header">
-            <div>
-              <span class="decision-id">Decision 03</span>
-              <h4 class="decision-title">Why Declarative Terraform?</h4>
+          <!-- Decision 1: Serverless -->
+          <div class="decision-panel active" id="dec-panel-1" role="tabpanel" aria-labelledby="dec-tab-1">
+            <div class="decision-panel-header">
+              <div>
+                <span class="decision-id">Decision 01 // Compute Tier</span>
+                <h3 class="decision-panel-title">Why Serverless Architecture?</h3>
+              </div>
+              <span class="decision-status-pill"><span class="status-dot"></span> Production Architecture</span>
             </div>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label chosen">
-              <i class="fa fa-check-circle"></i> Chosen Because
-            </div>
-            <p class="decision-text">
-              Explicit state-driven infrastructure as code. Enables deterministic preview (`terraform plan`), full auditability, automated resource teardown/recreation, and version-controlled history in Git.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label alt">
-              <i class="fa fa-exchange"></i> Alternatives Considered
-            </div>
-            <p class="decision-text">
-              AWS Management Console (ClickOps) or AWS SAM. Console lacks repeatability; SAM is specialized for Lambda but less flexible for managing multi-region ACM certs and Route 53 zones together.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label tradeoff">
-              <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
-            </div>
-            <p class="decision-text">
-              State file management and locking complexity. Mitigated by storing remote state in S3 with DynamoDB state locking to prevent concurrent modifications.
-            </p>
-          </div>
-        </div>
 
-        <!-- Decision 4: DynamoDB -->
-        <div class="decision-card">
-          <div class="decision-card-header">
-            <div>
-              <span class="decision-id">Decision 04</span>
-              <h4 class="decision-title">Why DynamoDB NoSQL?</h4>
-            </div>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label chosen">
-              <i class="fa fa-check-circle"></i> Chosen Because
-            </div>
-            <p class="decision-text">
-              Supports atomic counter updates (`UpdateItem` with `ADD visitor_count :inc`), handling concurrent requests without requiring application-level mutexes or external database locks.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label alt">
-              <i class="fa fa-exchange"></i> Alternatives Considered
-            </div>
-            <p class="decision-text">
-              Amazon RDS (PostgreSQL/MySQL). Rejected because relational databases require VPC networking, connection pooling management, and ongoing minimum compute charges.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label tradeoff">
-              <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
-            </div>
-            <p class="decision-text">
-              Limited query capability compared to SQL, but well-suited since the visitor counter data model requires only single-key lookups and atomic updates.
-            </p>
-          </div>
-        </div>
+            <div class="decision-blocks">
+              <div class="decision-block chosen">
+                <div class="decision-block-label">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i> Chosen Because
+                </div>
+                <p class="decision-text">
+                  Serverless services avoid always-on compute infrastructure and fit the low and variable traffic profile of this portfolio. Automatically scales with incoming request volume without provisioning virtual machines or managing operating system patching.
+                </p>
+              </div>
 
-        <!-- Decision 5: GitHub Actions -->
-        <div class="decision-card">
-          <div class="decision-card-header">
-            <div>
-              <span class="decision-id">Decision 05</span>
-              <h4 class="decision-title">Why GitHub Actions CI/CD?</h4>
-            </div>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label chosen">
-              <i class="fa fa-check-circle"></i> Chosen Because
-            </div>
-            <p class="decision-text">
-              Seamless native repository integration without requiring self-hosted infrastructure. Automatically syncs frontend builds to S3 and triggers CloudFront cache invalidation upon push to `main`.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label alt">
-              <i class="fa fa-exchange"></i> Alternatives Considered
-            </div>
-            <p class="decision-text">
-              AWS CodePipeline / CodeBuild or manual AWS CLI uploads. AWS CodePipeline introduces excess console switching and configuration overhead for lightweight static assets.
-            </p>
-          </div>
-          <div class="decision-section">
-            <div class="decision-section-label tradeoff">
-              <i class="fa fa-balance-scale"></i> Trade-Off & Mitigation
-            </div>
-            <p class="decision-text">
-              Dependency on GitHub runner uptime. Mitigated by storing standard AWS CLI deployment scripts that can execute locally with one command if needed.
-            </p>
-          </div>
-        </div>
+              <div class="decision-block alt">
+                <div class="decision-block-label">
+                  <i class="fa fa-exchange" aria-hidden="true"></i> Alternatives Considered
+                </div>
+                <p class="decision-text">
+                  Single EC2 instance or ECS Fargate container. Always-on compute introduces ongoing infrastructure management and idle resource costs, which are unnecessary for the low and variable traffic profile of this portfolio.
+                </p>
+              </div>
 
+              <div class="decision-block tradeoff">
+                <div class="decision-block-label">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i> Trade-Off & Mitigation
+                </div>
+                <p class="decision-text">
+                  Serverless introduces cold-start considerations. The Lambda function is intentionally kept lightweight with a minimal Python execution path.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision 2: CloudFront CDN -->
+          <div class="decision-panel" id="dec-panel-2" role="tabpanel" aria-labelledby="dec-tab-2">
+            <div class="decision-panel-header">
+              <div>
+                <span class="decision-id">Decision 02 // Edge Tier</span>
+                <h3 class="decision-panel-title">Why CloudFront Edge CDN?</h3>
+              </div>
+              <span class="decision-status-pill"><span class="status-dot"></span> Production Architecture</span>
+            </div>
+
+            <div class="decision-blocks">
+              <div class="decision-block chosen">
+                <div class="decision-block-label">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i> Chosen Because
+                </div>
+                <p class="decision-text">
+                  Keeps the S3 origin bucket private via Origin Access Control (OAC). Terminates TLS 1.3 at edge locations and distributes cached content through edge locations, reducing the distance between users and the origin, with built-in AWS Shield Standard DDoS mitigation.
+                </p>
+              </div>
+
+              <div class="decision-block alt">
+                <div class="decision-block-label">
+                  <i class="fa fa-exchange" aria-hidden="true"></i> Alternatives Considered
+                </div>
+                <p class="decision-text">
+                  Direct S3 Static Website Hosting. Rejected because S3 web endpoints do not support custom domain SSL/TLS certificates natively and require public read bucket access.
+                </p>
+              </div>
+
+              <div class="decision-block tradeoff">
+                <div class="decision-block-label">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i> Trade-Off & Mitigation
+                </div>
+                <p class="decision-text">
+                  Cached content propagation delay on updates. Mitigated by automated CI/CD cache invalidation (<code>/*</code>) via GitHub Actions, which reduces stale-cache time by triggering CloudFront invalidation as part of deployment.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision 3: Terraform -->
+          <div class="decision-panel" id="dec-panel-3" role="tabpanel" aria-labelledby="dec-tab-3">
+            <div class="decision-panel-header">
+              <div>
+                <span class="decision-id">Decision 03 // Orchestration</span>
+                <h3 class="decision-panel-title">Why Declarative Terraform?</h3>
+              </div>
+              <span class="decision-status-pill"><span class="status-dot"></span> Production Architecture</span>
+            </div>
+
+            <div class="decision-blocks">
+              <div class="decision-block chosen">
+                <div class="decision-block-label">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i> Chosen Because
+                </div>
+                <p class="decision-text">
+                  Explicit state-driven infrastructure as code. Enables deterministic preview (<code>terraform plan</code>), full auditability, automated resource teardown/recreation, and version-controlled history in Git.
+                </p>
+              </div>
+
+              <div class="decision-block alt">
+                <div class="decision-block-label">
+                  <i class="fa fa-exchange" aria-hidden="true"></i> Alternatives Considered
+                </div>
+                <p class="decision-text">
+                  AWS Management Console (ClickOps) or AWS SAM. Console lacks repeatability; SAM is specialized for Lambda but less flexible for managing multi-region ACM certs and Route 53 zones together.
+                </p>
+              </div>
+
+              <div class="decision-block tradeoff">
+                <div class="decision-block-label">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i> Trade-Off & Mitigation
+                </div>
+                <p class="decision-text">
+                  State file management and locking complexity. Mitigated by storing remote state in S3 with DynamoDB state locking to prevent concurrent modifications.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision 4: DynamoDB -->
+          <div class="decision-panel" id="dec-panel-4" role="tabpanel" aria-labelledby="dec-tab-4">
+            <div class="decision-panel-header">
+              <div>
+                <span class="decision-id">Decision 04 // State Store</span>
+                <h3 class="decision-panel-title">Why DynamoDB NoSQL?</h3>
+              </div>
+              <span class="decision-status-pill"><span class="status-dot"></span> Production Architecture</span>
+            </div>
+
+            <div class="decision-blocks">
+              <div class="decision-block chosen">
+                <div class="decision-block-label">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i> Chosen Because
+                </div>
+                <p class="decision-text">
+                  Supports atomic counter updates (<code>UpdateItem</code> with <code>ADD visitor_count :inc</code>), handling concurrent requests without requiring application-level mutexes or external database locks.
+                </p>
+              </div>
+
+              <div class="decision-block alt">
+                <div class="decision-block-label">
+                  <i class="fa fa-exchange" aria-hidden="true"></i> Alternatives Considered
+                </div>
+                <p class="decision-text">
+                  Amazon RDS (PostgreSQL/MySQL). Rejected because relational databases require VPC networking, connection pooling management, and ongoing minimum compute charges.
+                </p>
+              </div>
+
+              <div class="decision-block tradeoff">
+                <div class="decision-block-label">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i> Trade-Off & Mitigation
+                </div>
+                <p class="decision-text">
+                  Limited query capability compared to SQL, but well-suited since the visitor counter data model requires only single-key lookups and atomic updates.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision 5: GitHub Actions -->
+          <div class="decision-panel" id="dec-panel-5" role="tabpanel" aria-labelledby="dec-tab-5">
+            <div class="decision-panel-header">
+              <div>
+                <span class="decision-id">Decision 05 // CI/CD Pipeline</span>
+                <h3 class="decision-panel-title">Why GitHub Actions CI/CD?</h3>
+              </div>
+              <span class="decision-status-pill"><span class="status-dot"></span> Production Architecture</span>
+            </div>
+
+            <div class="decision-blocks">
+              <div class="decision-block chosen">
+                <div class="decision-block-label">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i> Chosen Because
+                </div>
+                <p class="decision-text">
+                  Seamless native repository integration without requiring self-hosted infrastructure. Automatically syncs frontend builds to S3 and triggers CloudFront cache invalidation upon push to <code>main</code>.
+                </p>
+              </div>
+
+              <div class="decision-block alt">
+                <div class="decision-block-label">
+                  <i class="fa fa-exchange" aria-hidden="true"></i> Alternatives Considered
+                </div>
+                <p class="decision-text">
+                  AWS CodePipeline / CodeBuild or manual AWS CLI uploads. AWS CodePipeline introduces excess console switching and configuration overhead for lightweight static assets.
+                </p>
+              </div>
+
+              <div class="decision-block tradeoff">
+                <div class="decision-block-label">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i> Trade-Off & Mitigation
+                </div>
+                <p class="decision-text">
+                  Dependency on GitHub runner uptime. Mitigated by storing standard AWS CLI deployment scripts that can execute locally with one command if needed.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -664,50 +773,175 @@
     <!-- ═══════════ PROJECTS ═══════════ -->
     <section class="section" id="projects">
       <div class="section-header reveal">
-        <div class="section-label">Engineering Missions</div>
-        <h2 class="section-title">Featured Projects</h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
+        <div class="section-label"><span class="section-num">04</span> FEATURED PROJECTS</div>
+        <h2 class="section-title">Flagship Cloud Architectures</h2>
+        <p class="section-subtitle" style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
           Production cloud architectures, serverless backends, and automated deployment pipelines.
         </p>
       </div>
 
-      <div class="projects-grid">
-        <!-- Mission CRC-001 -->
-        <div class="project-card reveal">
-          <div class="project-mission-id">Mission CRC-001 · Flagship Cloud Architecture</div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
-            <h3 style="margin:0;font-size:1.35rem;">🚀 Cloud Resume Challenge — AWS</h3>
-            <span class="project-status active" style="margin:0;">Operational · Live Production</span>
+      <div class="projects-container">
+        <!-- Mission CRC-001 Flagship Story Presentation -->
+        <article class="project-flagship reveal card-tilt">
+          <div class="flagship-grid">
+            
+            <!-- Left: Engineering Narrative & Metadata -->
+            <div class="flagship-narrative">
+              <div class="flagship-header-meta">
+                <span class="mission-tag">MISSION CRC-001</span>
+                <span class="mission-status-chip"><span class="status-dot"></span> OPERATIONAL · LIVE PRODUCTION</span>
+              </div>
+
+              <h3 class="flagship-title">Cloud Resume Challenge — AWS Serverless Architecture</h3>
+
+              <p class="flagship-summary">
+                Architected and deployed a serverless web application and AWS-backed visitor counter on Amazon Web Services. Infrastructure provisioned declaratively via Terraform, featuring edge CDN distribution with CloudFront, private S3 storage via Origin Access Control, serverless Python Lambda compute, and continuous deployment through GitHub Actions.
+              </p>
+
+              <div class="flagship-telemetry-highlights">
+                <div class="flagship-tel-item">
+                  <span class="tel-k">EDGE LATENCY</span>
+                  <span class="tel-v text-cyan">&lt; 35ms</span>
+                </div>
+                <div class="flagship-tel-item">
+                  <span class="tel-k">STATE INTEGRITY</span>
+                  <span class="tel-v text-cyan">Atomic DynamoDB</span>
+                </div>
+                <div class="flagship-tel-item">
+                  <span class="tel-k">PROVISIONING</span>
+                  <span class="tel-v text-cyan">100% Terraform</span>
+                </div>
+              </div>
+
+              <div class="project-stack">
+                <span class="tech-tag">AWS S3</span>
+                <span class="tech-tag">CloudFront</span>
+                <span class="tech-tag">AWS Lambda</span>
+                <span class="tech-tag">DynamoDB</span>
+                <span class="tech-tag">API Gateway</span>
+                <span class="tech-tag">Route 53</span>
+                <span class="tech-tag">Terraform</span>
+                <span class="tech-tag">GitHub Actions</span>
+                <span class="tech-tag">ACM</span>
+              </div>
+
+              <div class="flagship-actions">
+                <button class="btn-primary-glow btn-magnetic case-modal-trigger" data-case-target="modal-case-study">
+                  📖 Technical Case Study
+                </button>
+                <a href="https://github.com/Patelrahul4884/crc-frontend" target="_blank" rel="noopener noreferrer" class="btn-outline btn-magnetic">
+                  GitHub Frontend <span class="arrow-shift">↗</span>
+                </a>
+                <a href="https://github.com/Patelrahul4884/crc-terraform" target="_blank" rel="noopener noreferrer" class="btn-outline btn-magnetic">
+                  GitHub Terraform <span class="arrow-shift">↗</span>
+                </a>
+                <a href="#system" class="btn-outline btn-magnetic js-scroll-trigger">
+                  View Architecture ↓
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Miniature Topology Matrix -->
+            <div class="flagship-visual" aria-hidden="true">
+              <div class="mini-topology-card">
+                <div class="mini-topology-header">
+                  <span class="mini-topology-title">TOPOLOGY MATRIX // LIVE PIPELINE</span>
+                  <span class="mini-topology-status"><span class="status-dot"></span> RUNTIME</span>
+                </div>
+
+                <div class="mini-topology-stage">
+                  <svg class="mini-topology-svg" viewBox="0 0 360 220" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                      <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.8"/>
+                      </linearGradient>
+                      <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.8"/>
+                      </linearGradient>
+                      <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="glow"/>
+                        <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+                      </filter>
+                    </defs>
+
+                    <!-- Background Grid Lines -->
+                    <line x1="20" y1="50" x2="340" y2="50" stroke="#1a2744" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="20" y1="110" x2="340" y2="110" stroke="#1a2744" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="20" y1="170" x2="340" y2="170" stroke="#1a2744" stroke-width="1" stroke-dasharray="3,3" />
+
+                    <!-- Flow 1: Web Request Path (Visitor -> CloudFront -> S3) -->
+                    <path d="M 50 65 L 140 65 L 230 65 L 310 65" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2" />
+                    <circle class="svg-packet packet-1" cx="50" cy="65" r="4" fill="#00d4ff" filter="url(#glow-cyan)" />
+
+                    <!-- Flow 2: Visitor Counter Path (Visitor -> API GW -> Lambda -> DynamoDB) -->
+                    <path d="M 50 155 L 140 155 L 230 155 L 310 155" fill="none" stroke="rgba(124, 58, 237, 0.4)" stroke-width="2" />
+                    <circle class="svg-packet packet-2" cx="50" cy="155" r="4" fill="#c084fc" />
+
+                    <!-- Vertical Control Plane Bridge -->
+                    <path d="M 230 65 L 230 110 L 230 155" fill="none" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,4" />
+
+                    <!-- Node 1: Route 53 / Client -->
+                    <g transform="translate(30, 45)">
+                      <rect width="40" height="40" rx="6" fill="#0f1729" stroke="#1e3a5f" stroke-width="1.5" />
+                      <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00d4ff" text-anchor="middle" font-weight="600">R53</text>
+                      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="6" fill="#64748b" text-anchor="middle">DNS</text>
+                    </g>
+
+                    <!-- Node 2: CloudFront Edge -->
+                    <g transform="translate(120, 45)">
+                      <rect width="40" height="40" rx="6" fill="#0f1729" stroke="#00d4ff" stroke-width="1.5" />
+                      <circle cx="20" cy="20" r="14" fill="rgba(0, 212, 255, 0.08)" />
+                      <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle" font-weight="600">CDN</text>
+                      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="6" fill="#00d4ff" text-anchor="middle">EDGE</text>
+                    </g>
+
+                    <!-- Node 3: S3 Bucket Origin -->
+                    <g transform="translate(210, 45)">
+                      <rect width="40" height="40" rx="6" fill="#0f1729" stroke="#1e3a5f" stroke-width="1.5" />
+                      <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00d4ff" text-anchor="middle" font-weight="600">S3</text>
+                      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="6" fill="#64748b" text-anchor="middle">OAC</text>
+                    </g>
+
+                    <!-- Node 4: API Gateway -->
+                    <g transform="translate(120, 135)">
+                      <rect width="40" height="40" rx="6" fill="#0f1729" stroke="#1e3a5f" stroke-width="1.5" />
+                      <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="8" fill="#a78bfa" text-anchor="middle" font-weight="600">REST</text>
+                      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="6" fill="#64748b" text-anchor="middle">APIGW</text>
+                    </g>
+
+                    <!-- Node 5: Lambda Compute -->
+                    <g transform="translate(210, 135)">
+                      <rect width="40" height="40" rx="6" fill="#0f1729" stroke="#7c3aed" stroke-width="1.5" />
+                      <circle cx="20" cy="20" r="14" fill="rgba(124, 58, 237, 0.12)" />
+                      <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle" font-weight="600">λ</text>
+                      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="6" fill="#c084fc" text-anchor="middle">PYTHON</text>
+                    </g>
+
+                    <!-- Node 6: DynamoDB Table -->
+                    <g transform="translate(290, 135)">
+                      <rect width="40" height="40" rx="6" fill="#0f1729" stroke="#1e3a5f" stroke-width="1.5" />
+                      <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="8" fill="#a78bfa" text-anchor="middle" font-weight="600">DDB</text>
+                      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="6" fill="#64748b" text-anchor="middle">ATOMIC</text>
+                    </g>
+
+                    <!-- Status Text Overlay -->
+                    <text x="30" y="102" font-family="'JetBrains Mono', monospace" font-size="7" fill="#64748b">FLOW 01: STATIC ASSETS (HTTPS)</text>
+                    <text x="30" y="195" font-family="'JetBrains Mono', monospace" font-size="7" fill="#64748b">FLOW 02: SERVERLESS MUTATIONS</text>
+                  </svg>
+                </div>
+
+                <div class="mini-topology-footer">
+                  <div class="topology-badge">TLS 1.3 · ENCRYPTED</div>
+                  <div class="topology-badge">OAC PRIVATE ORIGIN</div>
+                  <div class="topology-badge">CI/CD SYNC</div>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <p>
-            Architected and deployed a serverless web application and AWS-backed visitor counter on Amazon Web Services. Infrastructure provisioned declaratively via Terraform, featuring edge CDN distribution with CloudFront, private S3 storage via Origin Access Control, serverless Python Lambda compute, and continuous deployment through GitHub Actions.
-          </p>
-          <div class="project-stack">
-            <span class="tech-tag">AWS S3</span>
-            <span class="tech-tag">CloudFront</span>
-            <span class="tech-tag">AWS Lambda</span>
-            <span class="tech-tag">DynamoDB</span>
-            <span class="tech-tag">API Gateway</span>
-            <span class="tech-tag">Route 53</span>
-            <span class="tech-tag">Terraform</span>
-            <span class="tech-tag">GitHub Actions</span>
-            <span class="tech-tag">ACM</span>
-          </div>
-          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem;">
-            <button class="btn-primary-glow case-modal-trigger" data-case-target="modal-case-study">
-              📖 Technical Case Study
-            </button>
-            <a href="https://github.com/Patelrahul4884/crc-frontend" target="_blank" rel="noopener noreferrer" class="btn-outline">
-              GitHub Frontend ↗
-            </a>
-            <a href="https://github.com/Patelrahul4884/crc-terraform" target="_blank" rel="noopener noreferrer" class="btn-outline">
-              GitHub Terraform ↗
-            </a>
-            <a href="#system" class="btn-outline js-scroll-trigger">
-              View Architecture ↓
-            </a>
-          </div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -716,38 +950,89 @@
     <!-- ═══════════ EXPERIENCE ═══════════ -->
     <section class="section" id="experience">
       <div class="section-header reveal">
-        <div class="section-label">Mission Log</div>
-        <h2 class="section-title">Experience</h2>
+        <div class="section-label"><span class="section-num">05</span> ENGINEERING JOURNEY</div>
+        <h2 class="section-title">Engineering Journey</h2>
+        <p class="section-subtitle" style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
+          Continuous technical progression across enterprise systems, cloud migrations, and automation.
+        </p>
       </div>
 
-      <div class="timeline">
-        <!-- Mission 02 — NICE -->
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="mission-label">Mission 02 — Active</div>
-          <div class="mission-card">
-            <h3>Cloud DevOps Engineer</h3>
-            <div class="mission-company">NICE</div>
-            <div class="mission-meta">
-              <span class="mission-meta-item">May 2023 – Present</span>
-              <span class="mission-meta-item"><span class="dot"></span> Pune, India</span>
+      <div class="journey-timeline">
+
+        <!-- Stage NOW — Continuous Building -->
+        <div class="journey-item reveal">
+          <div class="journey-rail">
+            <div class="journey-marker pulse-now"></div>
+            <div class="journey-line"></div>
+          </div>
+          <div class="journey-year">NOW</div>
+          <div class="journey-card card-tilt">
+            <div class="journey-card-header">
+              <div>
+                <span class="journey-mission-id">CURRENT STATE // ACTIVE EXPLORATION</span>
+                <h3 class="journey-role">Building Cloud Systems</h3>
+                <div class="journey-company">Currently building & exploring</div>
+              </div>
+              <span class="journey-tag active"><span class="status-dot"></span> Active</span>
+            </div>
+            <p class="journey-summary">
+              Continuously designing and refining resilient cloud architectures, serverless backend patterns, declarative Terraform modules, and automated CI/CD deployment pipelines on AWS.
+            </p>
+            <div class="mission-tech-tags">
+              <span class="tech-tag">AWS Cloud</span>
+              <span class="tech-tag">Terraform</span>
+              <span class="tech-tag">Serverless</span>
+              <span class="tech-tag">GitHub Actions</span>
+              <span class="tech-tag">Docker</span>
             </div>
           </div>
         </div>
 
-        <!-- Mission 01 — TCS -->
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="mission-label">Mission 01 — Completed</div>
-          <div class="mission-card">
-            <h3>System Engineer</h3>
-            <div class="mission-company">TATA Consultancy Services</div>
-            <div class="mission-meta">
-              <span class="mission-meta-item">May 2021 – May 2023</span>
-              <span class="mission-meta-item"><span class="dot"></span> Pune, India</span>
+        <!-- Stage 2023 — NICE -->
+        <div class="journey-item reveal">
+          <div class="journey-rail">
+            <div class="journey-marker active-marker"></div>
+            <div class="journey-line"></div>
+          </div>
+          <div class="journey-year">2023</div>
+          <div class="journey-card card-tilt">
+            <div class="journey-card-header">
+              <div>
+                <span class="journey-mission-id">MISSION 02 // ENTERPRISE CLOUD</span>
+                <h3 class="journey-role">Cloud DevOps Engineer</h3>
+                <div class="journey-company">NICE</div>
+              </div>
+              <span class="journey-meta-badge">May 2023 – Present · Pune, India</span>
+            </div>
+            <p class="journey-summary">
+              Specializing in cloud-native solutions, serverless backends, and CI/CD pipelines. Focused on eliminating manual toil, automating deployment cycles, and engineering resilient production systems on AWS.
+            </p>
+            <div class="mission-tech-tags">
+              <span class="tech-tag">AWS</span>
+              <span class="tech-tag">DevOps</span>
+              <span class="tech-tag">CI/CD</span>
+              <span class="tech-tag">Cloud Automation</span>
+              <span class="tech-tag">Serverless</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2021 — TCS -->
+        <div class="journey-item reveal">
+          <div class="journey-rail">
+            <div class="journey-marker completed-marker"></div>
+          </div>
+          <div class="journey-year">2021</div>
+          <div class="journey-card card-tilt">
+            <div class="journey-card-header">
+              <div>
+                <span class="journey-mission-id">MISSION 01 // CLOUD FOUNDATIONS</span>
+                <h3 class="journey-role">System Engineer <span class="role-sub">/ AWS Developer</span></h3>
+                <div class="journey-company">TATA Consultancy Services</div>
+              </div>
+              <span class="journey-meta-badge">May 2021 – May 2023 · Pune, India</span>
             </div>
 
-            <div class="mission-label mt-2">AWS Developer</div>
             <ul class="mission-details">
               <li>Designed and implemented serverless architecture using AWS Lambda, DynamoDB, AWS Glue and API Gateway to create a highly scalable and cost-effective backend.</li>
               <li>Orchestrated cloud infrastructure provisioning and management using Terraform, improving resource consistency and scalability.</li>
@@ -766,52 +1051,202 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
     <hr class="section-divider">
 
-    <!-- ═══════════ EDUCATION ═══════════ -->
-    <section class="section" id="education">
+    <!-- ═══════════ SKILLS / TOOLKIT ═══════════ -->
+    <section class="section" id="skills">
       <div class="section-header reveal">
-        <div class="section-label">Training Academy</div>
-        <h2 class="section-title">Education & Training</h2>
+        <div class="section-label"><span class="section-num">06</span> TECHNICAL PROFILE</div>
+        <h2 class="section-title">Engineering Toolkit</h2>
+        <p class="section-subtitle" style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
+          Production cloud services, infrastructure tooling, and automated deployment frameworks.
+        </p>
       </div>
 
-      <div class="edu-card reveal">
-        <h3>Shri S'ad Vidya Mandal Institute Of Technology</h3>
-        <div class="edu-degree">Bachelor of Engineering — Information Technology</div>
-        <div class="edu-meta">CGPA: 8.13 · August 2016 – May 2020</div>
+      <!-- Interactive Category Quick-Filter Bar -->
+      <div class="toolkit-filter-bar reveal" role="toolbar" aria-label="Technology Stack Filter">
+        <button class="toolkit-filter-btn active" data-filter="all">ALL CAPABILITIES</button>
+        <button class="toolkit-filter-btn" data-filter="aws">AWS CLOUD</button>
+        <button class="toolkit-filter-btn" data-filter="iac">IAC & CONTAINERS</button>
+        <button class="toolkit-filter-btn" data-filter="cicd">CI/CD AUTOMATION</button>
+        <button class="toolkit-filter-btn" data-filter="code">CODE & RUNTIMES</button>
       </div>
 
-      <div class="section-label mt-3 reveal">Professional Training</div>
-
-      <div class="training-grid">
-        <div class="training-card reveal">
-          <h4>DevOps Engineer</h4>
-          <div class="training-provider">Edureka</div>
-          <div class="training-date">March 2023</div>
-          <div class="training-links">
-            <a href="https://medium.com/@U_N_R_3_A_L/how-to-achieve-seamless-ci-cd-with-github-jenkins-docker-and-kubernetes-9c11a322a2c3" target="_blank" rel="noopener noreferrer">Project ↗</a>
-            <a href="#" class="cert-popup-trigger" data-cert="popup-devops">Certificate</a>
+      <div class="skills-grid">
+        <!-- Panel 1: AWS Cloud -->
+        <div class="skill-panel card-tilt reveal" data-category="aws">
+          <div class="skill-panel-header">
+            <span class="skill-panel-badge aws-badge">CLOUD</span>
+            <span>Cloud Infrastructure (AWS)</span>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip chip-aws">AWS Lambda</span>
+            <span class="skill-chip chip-aws">Amazon S3</span>
+            <span class="skill-chip chip-aws">Amazon CloudFront</span>
+            <span class="skill-chip chip-aws">Amazon DynamoDB</span>
+            <span class="skill-chip chip-aws">Amazon API Gateway</span>
+            <span class="skill-chip chip-aws">Amazon Route 53</span>
+            <span class="skill-chip chip-aws">AWS CloudWatch</span>
+            <span class="skill-chip chip-aws">AWS Glue</span>
+            <span class="skill-chip chip-aws">AWS IAM</span>
+            <span class="skill-chip chip-aws">AWS Certificate Manager (ACM)</span>
+            <span class="skill-chip chip-aws">Amazon EC2</span>
+            <span class="skill-chip chip-aws">AWS SAM</span>
           </div>
         </div>
 
-        <div class="training-card reveal reveal-delay-1">
-          <h4>Be A DevOps Pro</h4>
-          <div class="training-provider">INeuron</div>
-          <div class="training-date">October 2022 – February 2023</div>
-          <div class="training-links">
-            <a href="#" class="cert-popup-trigger" data-cert="popup-ineuron">Certificate</a>
+        <!-- Panel 2: IaC & Containers -->
+        <div class="skill-panel card-tilt reveal reveal-delay-1" data-category="iac">
+          <div class="skill-panel-header">
+            <span class="skill-panel-badge iac-badge">IAC</span>
+            <span>Infrastructure as Code & Containers</span>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip chip-iac">HashiCorp Terraform</span>
+            <span class="skill-chip chip-iac">Docker</span>
+            <span class="skill-chip chip-iac">Kubernetes</span>
+            <span class="skill-chip chip-iac">Helm</span>
+            <span class="skill-chip chip-iac">Git</span>
           </div>
         </div>
 
-        <div class="training-card reveal reveal-delay-2">
-          <h4>Python for Data Science Professional</h4>
-          <div class="training-provider">Edureka</div>
-          <div class="training-date">January 2022</div>
-          <div class="training-links">
-            <a href="#" class="cert-popup-trigger" data-cert="popup-python">Certificate</a>
+        <!-- Panel 3: CI/CD Automation -->
+        <div class="skill-panel card-tilt reveal reveal-delay-2" data-category="cicd">
+          <div class="skill-panel-header">
+            <span class="skill-panel-badge cicd-badge">CI/CD</span>
+            <span>CI/CD & DevOps Automation</span>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip chip-cicd">GitHub Actions</span>
+            <span class="skill-chip chip-cicd">Azure DevOps</span>
+            <span class="skill-chip chip-cicd">AWS CodePipeline</span>
+            <span class="skill-chip chip-cicd">Jenkins</span>
+            <span class="skill-chip chip-cicd">Postman</span>
+            <span class="skill-chip chip-cicd">Jira & Agile Workflows</span>
+          </div>
+        </div>
+
+        <!-- Panel 4: Programming & Scripting -->
+        <div class="skill-panel card-tilt reveal reveal-delay-3" data-category="code">
+          <div class="skill-panel-header">
+            <span class="skill-panel-badge code-badge">CODE</span>
+            <span>Programming, Scripting & Data</span>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-chip chip-code">Python</span>
+            <span class="skill-chip chip-code">PowerShell</span>
+            <span class="skill-chip chip-code">Bash / Shell</span>
+            <span class="skill-chip chip-code">RESTful APIs</span>
+            <span class="skill-chip chip-code">JSON / YAML</span>
+            <span class="skill-chip chip-code">Django</span>
+            <span class="skill-chip chip-code">Pandas & NumPy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════ CERTIFICATIONS & EDUCATION ═══════════ -->
+    <section class="section" id="certifications">
+      <div class="section-header reveal">
+        <div class="section-label"><span class="section-num">07</span> CREDENTIALS VAULT</div>
+        <h2 class="section-title">Certifications & Education</h2>
+        <p class="section-subtitle" style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
+          Verified AWS cloud credentials, academic degree, and professional engineering diplomas.
+        </p>
+      </div>
+
+      <div class="section-label mb-2 reveal">Verified AWS Badges</div>
+
+      <div class="certs-grid reveal">
+        <div class="cert-card card-tilt">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="29cfd6dc-7cd6-48d3-bf10-57daf7f36e4b"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card card-tilt">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="3f0cc417-8f58-4ecb-8baf-e6cdf894bf67"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card card-tilt">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="d1e45332-7fc0-4483-89f7-6a5d1171c85e"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card card-tilt">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="a3321b90-65fd-4149-959a-31875d67ccbd"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card card-tilt">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="f52933e9-395c-4358-b9a2-f22ed842566d"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+
+        <div class="cert-card card-tilt">
+          <div class="cert-verified">Verified</div>
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="9e2221fe-da5d-4712-af28-75f737003b29"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+      </div>
+
+      <!-- Credly embed script -->
+      <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+      <!-- Academic Education & Training -->
+      <div class="edu-training-container mt-3">
+        <div class="section-label mb-2 reveal">Academic & Professional Training</div>
+
+        <div class="edu-card card-tilt reveal">
+          <h3>Shri S'ad Vidya Mandal Institute Of Technology</h3>
+          <div class="edu-degree">Bachelor of Engineering — Information Technology</div>
+          <div class="edu-meta">CGPA: 8.13 · August 2016 – May 2020</div>
+        </div>
+
+        <div class="training-grid">
+          <div class="training-card card-tilt reveal">
+            <h4>DevOps Engineer</h4>
+            <div class="training-provider">Edureka</div>
+            <div class="training-date">March 2023</div>
+            <div class="training-links">
+              <a href="https://medium.com/@U_N_R_3_A_L/how-to-achieve-seamless-ci-cd-with-github-jenkins-docker-and-kubernetes-9c11a322a2c3" target="_blank" rel="noopener noreferrer">Project ↗</a>
+              <a href="#" class="cert-popup-trigger" data-cert="popup-devops">Certificate</a>
+            </div>
+          </div>
+
+          <div class="training-card card-tilt reveal reveal-delay-1">
+            <h4>Be A DevOps Pro</h4>
+            <div class="training-provider">INeuron</div>
+            <div class="training-date">October 2022 – February 2023</div>
+            <div class="training-links">
+              <a href="#" class="cert-popup-trigger" data-cert="popup-ineuron">Certificate</a>
+            </div>
+          </div>
+
+          <div class="training-card card-tilt reveal reveal-delay-2">
+            <h4>Python for Data Science Professional</h4>
+            <div class="training-provider">Edureka</div>
+            <div class="training-date">January 2022</div>
+            <div class="training-links">
+              <a href="#" class="cert-popup-trigger" data-cert="popup-python">Certificate</a>
+            </div>
           </div>
         </div>
       </div>
@@ -839,134 +1274,6 @@
 
     <hr class="section-divider">
 
-    <!-- ═══════════ SKILLS ═══════════ -->
-    <section class="section" id="skills">
-      <div class="section-header reveal">
-        <div class="section-label">Technical Competencies</div>
-        <h2 class="section-title">Technical Profile</h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.3rem;">
-          Specialized cloud services, infrastructure tooling, and automation frameworks.
-        </p>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-panel reveal">
-          <div class="skill-panel-header">Cloud Infrastructure (AWS)</div>
-          <div class="skill-tags-wrap">
-            <span class="skill-chip">AWS Lambda</span>
-            <span class="skill-chip">Amazon S3</span>
-            <span class="skill-chip">Amazon CloudFront</span>
-            <span class="skill-chip">Amazon DynamoDB</span>
-            <span class="skill-chip">Amazon API Gateway</span>
-            <span class="skill-chip">Amazon Route 53</span>
-            <span class="skill-chip">AWS CloudWatch</span>
-            <span class="skill-chip">AWS Glue</span>
-            <span class="skill-chip">AWS IAM</span>
-            <span class="skill-chip">AWS Certificate Manager (ACM)</span>
-            <span class="skill-chip">Amazon EC2</span>
-            <span class="skill-chip">AWS SAM</span>
-          </div>
-        </div>
-
-        <div class="skill-panel reveal reveal-delay-1">
-          <div class="skill-panel-header">Infrastructure as Code & Containers</div>
-          <div class="skill-tags-wrap">
-            <span class="skill-chip">HashiCorp Terraform</span>
-            <span class="skill-chip">Docker</span>
-            <span class="skill-chip">Kubernetes</span>
-            <span class="skill-chip">Helm</span>
-            <span class="skill-chip">Git</span>
-          </div>
-        </div>
-
-        <div class="skill-panel reveal reveal-delay-2">
-          <div class="skill-panel-header">CI/CD & DevOps Automation</div>
-          <div class="skill-tags-wrap">
-            <span class="skill-chip">GitHub Actions</span>
-            <span class="skill-chip">Azure DevOps</span>
-            <span class="skill-chip">AWS CodePipeline</span>
-            <span class="skill-chip">Jenkins</span>
-            <span class="skill-chip">Postman</span>
-            <span class="skill-chip">Jira & Agile Workflows</span>
-          </div>
-        </div>
-
-        <div class="skill-panel reveal reveal-delay-3">
-          <div class="skill-panel-header">Programming, Scripting & Data</div>
-          <div class="skill-tags-wrap">
-            <span class="skill-chip">Python</span>
-            <span class="skill-chip">PowerShell</span>
-            <span class="skill-chip">Bash / Shell</span>
-            <span class="skill-chip">RESTful APIs</span>
-            <span class="skill-chip">JSON / YAML</span>
-            <span class="skill-chip">Django</span>
-            <span class="skill-chip">Pandas & NumPy</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- ═══════════ CERTIFICATIONS ═══════════ -->
-    <section class="section" id="certifications">
-      <div class="section-header reveal">
-        <div class="section-label">Credentials Vault</div>
-        <h2 class="section-title">Certifications & Awards</h2>
-      </div>
-
-      <div class="section-label mb-2 reveal">AWS Badges</div>
-
-      <div class="certs-grid reveal">
-        <div class="cert-card">
-          <div class="cert-verified">Verified</div>
-          <div data-iframe-width="150" data-iframe-height="270"
-               data-share-badge-id="29cfd6dc-7cd6-48d3-bf10-57daf7f36e4b"
-               data-share-badge-host="https://www.credly.com"></div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-verified">Verified</div>
-          <div data-iframe-width="150" data-iframe-height="270"
-               data-share-badge-id="3f0cc417-8f58-4ecb-8baf-e6cdf894bf67"
-               data-share-badge-host="https://www.credly.com"></div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-verified">Verified</div>
-          <div data-iframe-width="150" data-iframe-height="270"
-               data-share-badge-id="d1e45332-7fc0-4483-89f7-6a5d1171c85e"
-               data-share-badge-host="https://www.credly.com"></div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-verified">Verified</div>
-          <div data-iframe-width="150" data-iframe-height="270"
-               data-share-badge-id="a3321b90-65fd-4149-959a-31875d67ccbd"
-               data-share-badge-host="https://www.credly.com"></div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-verified">Verified</div>
-          <div data-iframe-width="150" data-iframe-height="270"
-               data-share-badge-id="f52933e9-395c-4358-b9a2-f22ed842566d"
-               data-share-badge-host="https://www.credly.com"></div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-verified">Verified</div>
-          <div data-iframe-width="150" data-iframe-height="270"
-               data-share-badge-id="9e2221fe-da5d-4712-af28-75f737003b29"
-               data-share-badge-host="https://www.credly.com"></div>
-        </div>
-      </div>
-
-      <!-- Credly embed script (single load) -->
-      <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-    </section>
-
-    <hr class="section-divider">
-
     <!-- ═══════════ INTERESTS ═══════════ -->
     <section class="section" id="interests">
       <div class="section-header reveal">
@@ -975,25 +1282,25 @@
       </div>
 
       <div class="interests-grid">
-        <div class="interest-card reveal">
+        <div class="interest-card card-tilt reveal">
           <div class="interest-icon">🌐</div>
           <h4>Technology</h4>
           <p>In the era of tech, technology has become a key part of human life. I love to discover and learn new technologies.</p>
         </div>
 
-        <div class="interest-card reveal reveal-delay-1">
+        <div class="interest-card card-tilt reveal reveal-delay-1">
           <div class="interest-icon">⚽</div>
           <h4>Sports</h4>
           <p>Enthusiastic badminton player. Play and watch Cricket, Football. Enjoy watching Formula 1, swimming, and diving.</p>
         </div>
 
-        <div class="interest-card reveal reveal-delay-2">
+        <div class="interest-card card-tilt reveal reveal-delay-2">
           <div class="interest-icon">✈️</div>
           <h4>Travelling</h4>
           <p>I love exploring new places, cultures, and experiences.</p>
         </div>
 
-        <div class="interest-card reveal reveal-delay-3">
+        <div class="interest-card card-tilt reveal reveal-delay-3">
           <div class="interest-icon">🚀</div>
           <h4>Space</h4>
           <p>I love to explore space-related things, the advancement of science and the vision of space exploration to Mars.</p>
@@ -1006,8 +1313,17 @@
     <!-- ═══════════ CONTACT ═══════════ -->
     <section class="section" id="contact">
       <div class="section-header reveal">
-        <div class="section-label">Communications</div>
-        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-label"><span class="section-num">08</span> COMMUNICATIONS</div>
+      </div>
+
+      <div class="contact-hero-statement reveal">
+        <h2 class="contact-statement">
+          LET'S BUILD<br>
+          <span class="name-highlight">RELIABLE SYSTEMS.</span>
+        </h2>
+        <p class="contact-substatement">
+          Cloud infrastructure, DevOps automation, serverless systems, and engineering conversations.
+        </p>
       </div>
 
       <div class="contact-grid">
@@ -1015,37 +1331,43 @@
           <p>Interested in working together, have a question, or just want to connect? Feel free to reach out through any of the channels below.</p>
 
           <div class="contact-links">
-            <a href="mailto:patelr4142@gmail.com" class="contact-link-item">
+            <a href="mailto:patelr4142@gmail.com" class="contact-link-item btn-magnetic">
               <span class="link-icon"><i class="fa fa-envelope"></i></span>
-              patelr4142@gmail.com
+              <span>patelr4142@gmail.com</span>
+              <span class="arrow-shift">→</span>
             </a>
-            <a href="https://www.linkedin.com/in/rahul-patel-08805313a/" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/rahul-patel-08805313a/" class="contact-link-item btn-magnetic" target="_blank" rel="noopener noreferrer">
               <span class="link-icon"><i class="fa fa-linkedin"></i></span>
-              LinkedIn
+              <span>LinkedIn</span>
+              <span class="arrow-shift">↗</span>
             </a>
-            <a href="https://github.com/Patelrahul4884" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Patelrahul4884" class="contact-link-item btn-magnetic" target="_blank" rel="noopener noreferrer">
               <span class="link-icon"><i class="fa fa-github"></i></span>
-              GitHub
+              <span>GitHub</span>
+              <span class="arrow-shift">↗</span>
             </a>
-            <a href="https://twitter.com/U_N_R_3_A_L" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+            <a href="https://twitter.com/U_N_R_3_A_L" class="contact-link-item btn-magnetic" target="_blank" rel="noopener noreferrer">
               <span class="link-icon"><i class="fa fa-twitter"></i></span>
-              Twitter
+              <span>Twitter</span>
+              <span class="arrow-shift">↗</span>
             </a>
-            <a href="https://rahul-patel.hashnode.dev/" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+            <a href="https://rahul-patel.hashnode.dev/" class="contact-link-item btn-magnetic" target="_blank" rel="noopener noreferrer">
               <span class="link-icon"><i class="fa fa-pencil"></i></span>
-              Hashnode Blog
+              <span>Hashnode Blog</span>
+              <span class="arrow-shift">↗</span>
             </a>
-            <a href="https://medium.com/@U_N_R_3_A_L" class="contact-link-item" target="_blank" rel="noopener noreferrer">
+            <a href="https://medium.com/@U_N_R_3_A_L" class="contact-link-item btn-magnetic" target="_blank" rel="noopener noreferrer">
               <span class="link-icon"><i class="fa fa-medium"></i></span>
-              Medium
+              <span>Medium</span>
+              <span class="arrow-shift">↗</span>
             </a>
           </div>
         </div>
 
-        <div class="contact-status reveal reveal-delay-1">
+        <div class="contact-status card-tilt reveal reveal-delay-1">
           <div class="contact-status-item">
             <span class="contact-status-label">Status</span>
-            <span class="contact-status-value text-green">● Online</span>
+            <span class="contact-status-value text-green"><span class="status-dot"></span> Online</span>
           </div>
           <div class="contact-status-item">
             <span class="contact-status-label">Location</span>
@@ -1053,7 +1375,7 @@
           </div>
           <div class="contact-status-item">
             <span class="contact-status-label">Response Time</span>
-            <span class="contact-status-value">< 24h</span>
+            <span class="contact-status-value">&lt; 24h</span>
           </div>
           <div class="contact-status-item">
             <span class="contact-status-label">Open to Work</span>
