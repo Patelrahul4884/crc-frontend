@@ -24,6 +24,8 @@
 
 <body id="page-top">
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- Starfield Canvas & Depth Layers -->
   <canvas id="starfield-canvas" aria-hidden="true"></canvas>
   <div class="grid-pattern-bg" aria-hidden="true"></div>
@@ -55,7 +57,7 @@
   </nav>
 
   <!-- Page Content -->
-  <main class="page-content">
+  <main class="page-content" id="main-content" tabindex="-1">
 
     <!-- ═══════════ HERO ═══════════ -->
     <section class="hero" id="hero">
@@ -81,7 +83,7 @@
         <div class="telemetry-divider">//</div>
         <div class="telemetry-chip">
           <span class="telemetry-label">VISITOR:</span>
-          <span class="telemetry-val-highlight">#<span id="visitors">—</span></span>
+          <span class="telemetry-val-highlight"><span id="visitors" aria-live="polite">—</span></span>
         </div>
       </div>
 
@@ -280,9 +282,9 @@
             <span class="arch-pipeline-desc">Visitor → Route 53 → CloudFront → S3 → Static Frontend</span>
           </div>
 
-          <div class="arch-flow flow-horizontal" role="tablist" aria-label="Static Frontend Delivery Pipeline">
+          <div class="arch-flow flow-horizontal" aria-label="Static Frontend Delivery Pipeline">
             
-            <button class="arch-node" data-node="visitor" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node" data-node="visitor">
               <div class="arch-node-type">Client Origin</div>
               <div class="arch-node-name">Visitor</div>
               <div class="arch-node-sub">Web Browser</div>
@@ -296,7 +298,7 @@
               </svg>
             </div>
 
-            <button class="arch-node node-pulse-cyan flow1-n1" data-node="route53" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node node-pulse-cyan flow1-n1" data-node="route53">
               <div class="arch-node-type">DNS Routing</div>
               <div class="arch-node-name">Route 53</div>
               <div class="arch-node-sub">Global Anycast</div>
@@ -310,7 +312,7 @@
               </svg>
             </div>
 
-            <button class="arch-node active node-pulse-cyan flow1-n2" data-node="cloudfront" role="tab" aria-selected="true" tabindex="0">
+            <button class="arch-node active node-pulse-cyan flow1-n2" data-node="cloudfront">
               <div class="arch-node-type">Edge CDN</div>
               <div class="arch-node-name">CloudFront</div>
               <div class="arch-node-sub">TLS 1.3 & Cache</div>
@@ -324,7 +326,7 @@
               </svg>
             </div>
 
-            <button class="arch-node node-pulse-cyan flow1-n3" data-node="s3" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node node-pulse-cyan flow1-n3" data-node="s3">
               <div class="arch-node-type">Object Store</div>
               <div class="arch-node-name">Amazon S3</div>
               <div class="arch-node-sub">Private Origin</div>
@@ -338,7 +340,7 @@
               </svg>
             </div>
 
-            <button class="arch-node node-pulse-cyan flow1-n4" data-node="frontend" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node node-pulse-cyan flow1-n4" data-node="frontend">
               <div class="arch-node-type">Client Layer</div>
               <div class="arch-node-name">Static Frontend</div>
               <div class="arch-node-sub">Browser Runtime</div>
@@ -354,9 +356,9 @@
             <span class="arch-pipeline-desc">Visitor → API Gateway → AWS Lambda → DynamoDB</span>
           </div>
 
-          <div class="arch-flow flow-horizontal" role="tablist" aria-label="Visitor Counter Pipeline">
+          <div class="arch-flow flow-horizontal" aria-label="Visitor Counter Pipeline">
             
-            <button class="arch-node purple" data-node="visitor" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node purple" data-node="visitor">
               <div class="arch-node-type">Client Fetch</div>
               <div class="arch-node-name">Visitor</div>
               <div class="arch-node-sub">Async Visitor Counter Request</div>
@@ -370,7 +372,7 @@
               </svg>
             </div>
 
-            <button class="arch-node purple node-pulse-purple flow2-n1" data-node="apigateway" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node purple node-pulse-purple flow2-n1" data-node="apigateway">
               <div class="arch-node-type">REST Endpoint</div>
               <div class="arch-node-name">API Gateway</div>
               <div class="arch-node-sub">CORS & Routing</div>
@@ -384,7 +386,7 @@
               </svg>
             </div>
 
-            <button class="arch-node purple node-pulse-purple flow2-n2" data-node="lambda" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node purple node-pulse-purple flow2-n2" data-node="lambda">
               <div class="arch-node-type">Serverless Compute</div>
               <div class="arch-node-name">AWS Lambda</div>
               <div class="arch-node-sub">Python Handler</div>
@@ -398,7 +400,7 @@
               </svg>
             </div>
 
-            <button class="arch-node purple node-pulse-purple flow2-n3" data-node="dynamodb" role="tab" aria-selected="false" tabindex="0">
+            <button class="arch-node purple node-pulse-purple flow2-n3" data-node="dynamodb">
               <div class="arch-node-type">NoSQL Database</div>
               <div class="arch-node-name">DynamoDB</div>
               <div class="arch-node-sub">Atomic State</div>
@@ -418,7 +420,7 @@
             <!-- Terraform Card -->
             <div class="arch-deploy-card">
               <div class="arch-deploy-card-top">
-                <button class="arch-node deploy-btn" data-node="terraform" role="tab" aria-selected="false" tabindex="0">
+                <button class="arch-node deploy-btn" data-node="terraform">
                   <div class="arch-node-type">IaC Orchestration</div>
                   <div class="arch-node-name">HashiCorp Terraform</div>
                   <div class="arch-node-sub">Patelrahul4884/crc-terraform</div>
@@ -440,7 +442,7 @@
             <!-- GitHub Actions Card -->
             <div class="arch-deploy-card">
               <div class="arch-deploy-card-top">
-                <button class="arch-node deploy-btn" data-node="githubactions" role="tab" aria-selected="false" tabindex="0">
+                <button class="arch-node deploy-btn" data-node="githubactions">
                   <div class="arch-node-type">Continuous Delivery</div>
                   <div class="arch-node-name">GitHub Actions</div>
                   <div class="arch-node-sub">Patelrahul4884/crc-frontend</div>
@@ -523,7 +525,7 @@
             <span class="dec-tab-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-2" id="dec-tab-2" data-decision="2">
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-2" id="dec-tab-2" data-decision="2" tabindex="-1">
             <span class="dec-tab-num">02</span>
             <div class="dec-tab-meta">
               <span class="dec-tab-title">CloudFront Edge CDN</span>
@@ -532,7 +534,7 @@
             <span class="dec-tab-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-3" id="dec-tab-3" data-decision="3">
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-3" id="dec-tab-3" data-decision="3" tabindex="-1">
             <span class="dec-tab-num">03</span>
             <div class="dec-tab-meta">
               <span class="dec-tab-title">Declarative Terraform</span>
@@ -541,7 +543,7 @@
             <span class="dec-tab-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-4" id="dec-tab-4" data-decision="4">
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-4" id="dec-tab-4" data-decision="4" tabindex="-1">
             <span class="dec-tab-num">04</span>
             <div class="dec-tab-meta">
               <span class="dec-tab-title">DynamoDB NoSQL</span>
@@ -550,7 +552,7 @@
             <span class="dec-tab-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-5" id="dec-tab-5" data-decision="5">
+          <button class="decision-tab-btn" role="tab" aria-selected="false" aria-controls="dec-panel-5" id="dec-tab-5" data-decision="5" tabindex="-1">
             <span class="dec-tab-num">05</span>
             <div class="dec-tab-meta">
               <span class="dec-tab-title">GitHub Actions CI/CD</span>
@@ -1253,19 +1255,19 @@
     </section>
 
     <!-- Certificate Popups (Modal Overlays) -->
-    <div class="cert-modal-overlay" id="popup-devops" role="dialog" aria-modal="true" aria-label="DevOps Engineer Certificate">
+    <div class="cert-modal-overlay" id="popup-devops" role="dialog" aria-modal="true" aria-label="DevOps Engineer Certificate" aria-hidden="true">
       <div class="cert-modal">
         <button class="cert-modal-close" aria-label="Close">&times;</button>
         <img src="img/DevOps Pro.jpg" alt="Edureka DevOps Engineer Certificate">
       </div>
     </div>
-    <div class="cert-modal-overlay" id="popup-ineuron" role="dialog" aria-modal="true" aria-label="INeuron DevOps Pro Certificate">
+    <div class="cert-modal-overlay" id="popup-ineuron" role="dialog" aria-modal="true" aria-label="INeuron DevOps Pro Certificate" aria-hidden="true">
       <div class="cert-modal">
         <button class="cert-modal-close" aria-label="Close">&times;</button>
         <img src="img/7fd3c0f2-203d-4b4a-91ff-4eb2717c8274.png" alt="INeuron Be A DevOps Pro Certificate">
       </div>
     </div>
-    <div class="cert-modal-overlay" id="popup-python" role="dialog" aria-modal="true" aria-label="Python for Data Science Certificate">
+    <div class="cert-modal-overlay" id="popup-python" role="dialog" aria-modal="true" aria-label="Python for Data Science Certificate" aria-hidden="true">
       <div class="cert-modal">
         <button class="cert-modal-close" aria-label="Close">&times;</button>
         <img src="img/certificate_508be1261b52dd275be7b407263e9472_page-0001.jpg" alt="Edureka Python for Data Science Certificate">
@@ -1390,7 +1392,7 @@
     </section>
 
     <!-- ═══════════ TECHNICAL CASE STUDY MODAL ═══════════ -->
-    <div class="case-modal-overlay" id="modal-case-study" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle">
+    <div class="case-modal-overlay" id="modal-case-study" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle" aria-hidden="true">
       <div class="case-modal">
         <div class="case-modal-header">
           <div>

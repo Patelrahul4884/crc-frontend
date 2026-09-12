@@ -77,6 +77,27 @@ body {
   position: relative;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 3000;
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  background: var(--panel-bg);
+  border: 1px solid var(--cyan-primary);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  transform: translateY(-150%);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  color: var(--text-primary);
+}
+
 /* Starfield background — pure CSS */
 body::before {
   content: '';

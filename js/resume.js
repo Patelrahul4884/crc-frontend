@@ -235,8 +235,8 @@
     const data = archNodesData[nodeKey];
     if (!data) return;
 
-    $('.arch-node').removeClass('active').attr('aria-selected', 'false');
-    $('.arch-node[data-node="' + nodeKey + '"]').addClass('active').attr('aria-selected', 'true');
+    $('.arch-node').removeClass('active');
+    $('.arch-node[data-node="' + nodeKey + '"]').addClass('active');
 
     const $inspector = $('#archInspector');
     if ($inspector.length) {
@@ -293,8 +293,8 @@
   // ═══════════════════════════════════════════
 
   function selectDecision(decId) {
-    $('.decision-tab-btn').removeClass('active').attr('aria-selected', 'false');
-    $('.decision-tab-btn[data-decision="' + decId + '"]').addClass('active').attr('aria-selected', 'true');
+    $('.decision-tab-btn').removeClass('active').attr({ 'aria-selected': 'false', tabindex: '-1' });
+    $('.decision-tab-btn[data-decision="' + decId + '"]').addClass('active').attr({ 'aria-selected': 'true', tabindex: '0' });
 
     $('.decision-panel').removeClass('active');
     const $targetPanel = $('#dec-panel-' + decId);
@@ -309,7 +309,26 @@
   });
 
   $(document).on('keydown', '.decision-tab-btn', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
+    const $tabs = $('.decision-tab-btn');
+    const currentIndex = $tabs.index(this);
+    let nextIndex;
+
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      nextIndex = (currentIndex + 1) % $tabs.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      nextIndex = (currentIndex - 1 + $tabs.length) % $tabs.length;
+    } else if (e.key === 'Home') {
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      nextIndex = $tabs.length - 1;
+    }
+
+    if (nextIndex !== undefined) {
+      e.preventDefault();
+      const $nextTab = $tabs.eq(nextIndex);
+      selectDecision($nextTab.data('decision'));
+      $nextTab.focus();
+    } else if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       const decId = $(this).data('decision');
       selectDecision(decId);
@@ -340,65 +359,79 @@
   });
 
   // ═══════════════════════════════════════════
-  // TECHNICAL CASE STUDY MODAL
+  // ACCESSIBLE MODALS
   // ═══════════════════════════════════════════
+
+  let $activeModal = null;
+  let modalOpener = null;
+
+  function getFocusableElements($modal) {
+    return $modal.find('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+  }
+
+  function openModal($modal, opener) {
+    if (!$modal.length) return;
+
+    $activeModal = $modal;
+    modalOpener = opener || null;
+    $modal.addClass('visible').attr('aria-hidden', 'false');
+    $('body').css('overflow', 'hidden');
+
+    $modal.find('.case-modal-close, .cert-modal-close').first().focus();
+  }
+
+  function closeModal($modal) {
+    if (!$modal || !$modal.length) return;
+
+    $modal.removeClass('visible').attr('aria-hidden', 'true');
+    $('body').css('overflow', '');
+
+    const opener = modalOpener;
+    $activeModal = null;
+    modalOpener = null;
+    if (opener && document.contains(opener)) opener.focus();
+  }
 
   $(document).on('click', '.case-modal-trigger', function(e) {
     e.preventDefault();
-    const modalId = $(this).data('case-target') || 'modal-case-study';
-    const $modal = $('#' + modalId);
-    if ($modal.length) {
-      $modal.addClass('visible');
-      $('body').css('overflow', 'hidden');
-      $modal.find('.case-modal-close').focus();
-    }
+    openModal($('#' + ($(this).data('case-target') || 'modal-case-study')), this);
   });
 
-  $(document).on('click', '.case-modal-close', function() {
-    $(this).closest('.case-modal-overlay').removeClass('visible');
-    $('body').css('overflow', '');
-  });
-
-  $(document).on('click', '.case-modal-overlay', function(e) {
-    if ($(e.target).hasClass('case-modal-overlay')) {
-      $(this).removeClass('visible');
-      $('body').css('overflow', '');
-    }
-  });
-
-  // ═══════════════════════════════════════════
-  // CERTIFICATE POPUP MODALS
-  // ═══════════════════════════════════════════
-
-  $('.cert-popup-trigger').on('click', function(e) {
+  $(document).on('click', '.cert-popup-trigger', function(e) {
     e.preventDefault();
-    const modalId = $(this).data('cert');
-    const $modal = $('#' + modalId);
-    if ($modal.length) {
-      $modal.addClass('visible');
-      // Trap focus
-      $modal.find('.cert-modal-close').focus();
-    }
+    openModal($('#' + $(this).data('cert')), this);
   });
 
-  // Close modal on close button
-  $('.cert-modal-close').on('click', function() {
-    $(this).closest('.cert-modal-overlay').removeClass('visible');
+  $(document).on('click', '.case-modal-close, .cert-modal-close', function() {
+    closeModal($(this).closest('.case-modal-overlay, .cert-modal-overlay'));
   });
 
-  // Close modal on overlay click
-  $('.cert-modal-overlay').on('click', function(e) {
-    if ($(e.target).hasClass('cert-modal-overlay')) {
-      $(this).removeClass('visible');
-    }
+  $(document).on('click', '.case-modal-overlay, .cert-modal-overlay', function(e) {
+    if (e.target === this) closeModal($(this));
   });
 
-  // Close modals on Escape
   $(document).on('keydown', function(e) {
+    if (!$activeModal || !$activeModal.length) return;
+
     if (e.key === 'Escape') {
-      $('.cert-modal-overlay.visible').removeClass('visible');
-      $('.case-modal-overlay.visible').removeClass('visible');
-      $('body').css('overflow', '');
+      e.preventDefault();
+      closeModal($activeModal);
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const $focusable = getFocusableElements($activeModal);
+      if (!$focusable.length) return;
+
+      const first = $focusable.get(0);
+      const last = $focusable.get($focusable.length - 1);
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   });
 
@@ -573,4 +606,3 @@
   }
 
 })(jQuery);
-
